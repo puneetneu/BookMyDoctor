@@ -16,7 +16,7 @@ As a user (customer or doctor) I can login into my account by entering username 
 
 ### <b>User Stories for Doctor Screen:</b>
 <ol>
-<li>As a user (doctor) I will be able to enter my registratoon details after loggin in.</li>
+<li>As a user (doctor) I will be able to enter my registration details after logging in.</li>
 <li>As a user (doctor) I will be able to see his current weekly planner once he logs in.</li>
 <li>As a user (doctor) I will be able to navigate to his profile page to update any information.</li>
 <li>As a user (doctor) I will be able to check his previous weekly planners</li>
