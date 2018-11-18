@@ -25,15 +25,22 @@ As a user (customer or doctor) I can login into my account by entering username 
 </ol><br>
 
 <b>User Stories for Customer's Screen:</b>
-
-1.	As a user (customer), I should be able to access the profile section which lists all my personal details.
-2.	As a user (customer), I should be able to book appointments with a doctor.
-3.	As a user (customer), I should be able to view my previous appointments with doctor along with the doctor’s feedback and prescription.
-4.	As a user (customer), I should be able to search for a particular doctor, hospital or lab with my query.
-5.	As a user (customer), I should be provided with filters to search for doctors, hospitals or labs.
-6.	As a user (customer), I should be able to see the location of the doctors, hospitals or labs on a map.
-7.	As a user (customer), I should be able to download a prescription and doctors’ feedback in a pdf format.
-
+<ol>
+    <li>
+        As a user (customer), I should be able to access the profile section which lists all my personal details.</li>
+    <li>
+        As a user (customer), I should be able to book appointments with a doctor.</li>
+    <li>
+        As a user (customer), I should be able to view my previous appointments with doctor along with the doctor’s feedback and prescription.</li>
+    <li>
+        As a user (customer), I should be able to search for a particular doctor, hospital or lab with my query.</li>
+    <li>
+        As a user (customer), I should be provided with filters to search for doctors, hospitals or labs.</li>
+    <li>
+        As a user (customer), I should be able to see the location of the doctors, hospitals or labs on a map.</li>
+    <li>
+        As a user (customer), I should be able to download a prescription and doctors’ feedback in a pdf format.</li>
+</ol>
 
 <img src="./Model/uml-diagram-with-drawio.svg">
 
