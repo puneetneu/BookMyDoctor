@@ -42,6 +42,6 @@ As a user (customer or doctor) I can login into my account by entering username 
         As a user (customer), I should be able to download a prescription and doctors’ feedback in a pdf format.</li>
 </ol>
 
-<img src="./Model/uml-diagram-with-drawio.svg">
+<img src="./Model/DDD_Model.svg">
 
 
