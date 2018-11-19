@@ -33,11 +33,11 @@ As a user (customer or doctor) I can login into my account by entering username 
     <li>
         As a user (customer), I should be able to view my previous appointments with doctor along with the doctor’s feedback and prescription.</li>
     <li>
-        As a user (customer), I should be able to search for a particular doctor, hospital or lab with my query.</li>
+        As a user (customer), I should be able to search for a particular doctor .</li>
     <li>
-        As a user (customer), I should be provided with filters to search for doctors, hospitals or labs.</li>
+        As a user (customer), I should be provided with filters to search for doctors.</li>
     <li>
-        As a user (customer), I should be able to see the location of the doctors, hospitals or labs on a map.</li>
+        As a user (customer), I should be able to see the location of the doctor.</li>
     <li>
         As a user (customer), I should be able to download a prescription and doctors’ feedback in a pdf format.</li>
 </ol>
