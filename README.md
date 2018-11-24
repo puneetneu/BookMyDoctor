@@ -24,6 +24,24 @@ As a user (customer or doctor) I can login into my account by entering username 
 <li>As a user (doctor) I will be able to provide prescriptions online to any user by filling the details in a textarea which the user will download as a pdf</li>
 </ol><br>
 
-<img src="./Model/uml-diagram-with-drawio.svg">
+<b>User Stories for Customer's Screen:</b>
+<ol>
+    <li>
+        As a user (customer), I should be able to access the profile section which lists all my personal details.</li>
+    <li>
+        As a user (customer), I should be able to book appointments with a doctor.</li>
+    <li>
+        As a user (customer), I should be able to view my previous appointments with doctor along with the doctor’s feedback and prescription.</li>
+    <li>
+        As a user (customer), I should be able to search for a particular doctor .</li>
+    <li>
+        As a user (customer), I should be provided with filters to search for doctors.</li>
+    <li>
+        As a user (customer), I should be able to see the location of the doctor.</li>
+    <li>
+        As a user (customer), I should be able to download a prescription and doctors’ feedback in a pdf format.</li>
+</ol>
+
+<img src="./Model/DDD_Model.svg">
 
 
