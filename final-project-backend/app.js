@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api',route);
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost:27017/doctorlist', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/finalproject', { useNewUrlParser: true });
 
 //on success
 
