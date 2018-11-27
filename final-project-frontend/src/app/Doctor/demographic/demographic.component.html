@@ -1,0 +1,68 @@
+<nav class="white"></nav>
+<nav class="indigo lighten-5">Profile</nav>
+<div class="contain">
+  <form #demoForm="ngForm"  class="col s12"  (ngSubmit)="onSubmit(demoForm)" enctype="multipart/form-data" >
+      <input type="hidden" required name="_id" #_id="ngModel" [(ngModel)]="doctorService.selecteddoctor._id">
+      <div class="input-field col s5">
+      <div class="row">
+          <div class="input-field col s12">
+          <input type="text" class="validate" id="first_name" required
+          name="firstname" #firstname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.firstname" />
+          <label for="first_name">First Name</label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+        <input type="text" class="validate" id="last_name" required
+        name="lastname" #lastname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.lastname" />
+        <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+          <mat-form-field class="col s12">
+              <mat-select  required
+              placeholder="Speciality"
+              name="speciality" #speciality="ngModel"  [(ngModel)]="doctorService.selecteddoctor.speciality"
+              >
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{food.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+      </div>
+      <div class="row">
+          <mat-radio-group class="col s12" required
+          name="gender" #gender="ngModel" 
+          [(ngModel)]="doctorService.selecteddoctor.gender" 
+          >
+            <div class="input-field col s6">
+              <mat-radio-button value="male">Male </mat-radio-button></div>
+              <div class="input-field col s6">
+              <mat-radio-button value="female">Female</mat-radio-button> </div>
+            </mat-radio-group>
+          
+      </div>
+      <div class="row">
+          <div class="input-field col s5">
+           <button class="btn btn-custom right" type="submit" [disabled]="!demoForm.valid"> Submit</button>
+          </div>
+     </div> 
+
+    </div>
+    <div class="input-field col s2"> </div>
+    <div class="input-field col s4">
+        <div class="row" >
+           <img src={{imageToShow}} alt="pic" style=" width: 100px ; height: 100px;">
+        </div>
+        <div class="row" >
+            <input  name="pic" (change)="onchange($event)"
+            type="file"  accept="image/*">
+        </div> 
+        <input type="hidden" name="image" #image="ngModel" [(ngModel)]="doctorService.selecteddoctor.image">
+       
+    </div>
+
+    
+  </form>
+</div>

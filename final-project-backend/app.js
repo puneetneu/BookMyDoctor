@@ -4,7 +4,6 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 var path = require('path');
 var upload = require('express-fileupload');
-var multer = require("multer");
 
 var doctorController= require('./controllers/doctorController');
 var imagecontroller = require('./controllers/imagecontroller');

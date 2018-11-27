@@ -1,0 +1,49 @@
+<nav class="white"></nav>
+<nav class="indigo lighten-5">Profile</nav>
+<div class="contain">
+  <form class="col s12" #clinicForm="ngForm" (ngSubmit)="onSubmit(clinicForm)">
+      <input type="hidden" required name="_id" #_id="ngModel" [(ngModel)]="doctorService.selecteddoctor._id">
+      <input type="hidden"  name="firstname" #firstname="ngModel" [(ngModel)]="doctorService.selecteddoctor.firstname">
+      <input type="hidden"  name="lastname" #lastname="ngModel" [(ngModel)]="doctorService.selecteddoctor.lastname">
+      <input type="hidden"  name="speciality" #speciality="ngModel" [(ngModel)]="doctorService.selecteddoctor.speciality">
+      <input type="hidden"  name="gender" #gender="ngModel" [(ngModel)]="doctorService.selecteddoctor.gender">
+      <input type="hidden"  name="degree" #degree="ngModel" [(ngModel)]="doctorService.selecteddoctor.degree">
+      <input type="hidden"  name="college" #college="ngModel" [(ngModel)]="doctorService.selecteddoctor.eoy">
+      <input type="hidden"  name="eoc" #eoc="ngModel" [(ngModel)]="doctorService.selecteddoctor.eoc">
+      <input type="hidden"  name="eoy" #eoy="ngModel" [(ngModel)]="doctorService.selecteddoctor.eoy">
+      <div class="row">
+          <div class="input-field col s5">
+        <input  required id="clinic"
+        name="clinicname" #clinicname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.clinicname"
+         type="text" class="validate"/>
+        <label for="clinic">Clinic Name </label>
+        </div>
+      </div>
+      <div class="row">
+          <mat-form-field class="col s5">
+              <mat-select  required 
+              placeholder="City"
+              name="cliniccity" #cliniccity="ngModel"  [(ngModel)]="doctorService.selecteddoctor.cliniccity"
+              >
+                <mat-option *ngFor="let city of cities" [value]="city.value">
+                  {{city.value}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> 
+      </div>
+      <div class="row">
+          <div class="input-field col s5">
+        <input  required id="clinicaddress"
+        name="clinicaddress" #clinicaddress="ngModel"  [(ngModel)]="doctorService.selecteddoctor.clinicaddress"
+         type="text" class="validate"/>
+        <label for="clinicaddress">Street Address </label>
+        </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s5">
+        <button class="btn btn-custom right" type="submit" [disabled]="!clinicForm.valid"> Submit</button>
+      </div>
+    </div>
+    
+  </form>
+</div>
