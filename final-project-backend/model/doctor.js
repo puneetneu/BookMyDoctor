@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
  var Doctor = mongoose.model('Doctor',{
-        email:{type : String},
-        password:{type : String},
+        doctor_id: {type :String},
+        email: {type: String},
+        password: {type: String},
+        phone:{type: String},
         firstname : {type : String},
         lastname : {type : String},
         speciality : {type : String},

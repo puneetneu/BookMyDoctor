@@ -1,5 +1,9 @@
 export class Doctor {
    _id:string;
+   doctor_id: string;
+   email:string ;
+   password:string;
+   phone:string;
    firstname : string;
    lastname : string;
    speciality : string;

@@ -40,6 +40,10 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
+      doctor_id:"",
+      email: "",
+      password:"",
+      phone: "",
       firstname : "",
       lastname : "",
       speciality : "",
@@ -78,7 +82,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
 
   getdoctor()
   {
-    this.doctorService.getDoctor("5bfb10834cb39b6780fcccad").subscribe((res)=>{
+    this.doctorService.getDoctor("92").subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
     this.getimage();
     });
@@ -129,13 +133,21 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
 
  getimage()
  {
-   //alert(this.doctorService.selecteddoctor.image);
+   if(this.doctorService.selecteddoctor.image==undefined)
+   {
+    this.http.get('http://localhost:3000/img/dummy.png',{responseType: 'blob'}).subscribe((res) => {
+      console.log(res);
+    this.createImageFromBlob(res);
+  
+     });
+   }
+   else{
   this.http.get('http://localhost:3000/img/'+this.doctorService.selecteddoctor.image,{responseType: 'blob'}).subscribe((res) => {
     console.log(res);
   this.createImageFromBlob(res);
 
    });
  }
-  
+}
  
 }

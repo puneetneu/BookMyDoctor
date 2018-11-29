@@ -22,7 +22,7 @@ app.use('/doctors', doctorController);
 app.use('/img', imagecontroller);
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost:27017/finalproject', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/healthDB', { useNewUrlParser: true });
 
 //on success
 

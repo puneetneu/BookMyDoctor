@@ -40,6 +40,10 @@ export class EducationComponent implements OnInit {
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
+      doctor_id:"",
+      email: "",
+      password:"",
+      phone: "",
       firstname : "",
       lastname : "",
       speciality : "",
@@ -65,7 +69,7 @@ export class EducationComponent implements OnInit {
 
   getdoctor()
   {
-    this.doctorService.getDoctor("5bfb10834cb39b6780fcccad").subscribe((res)=>{
+    this.doctorService.getDoctor("92").subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
     })
   }

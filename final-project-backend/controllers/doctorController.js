@@ -14,11 +14,23 @@ router.get('/' , (req, res)=>{
     });
 });
 
-router.get('/:id' ,(req,res) =>{
-    if(!ObjectId.isValid(req.params.id))
-    return res.status(400).send(`No record with given id :  ${req.params.id}`);
+// router.get('/:id' ,(req,res) =>{
+//     if(!ObjectId.isValid(req.params.id))
+//     return res.status(400).send(`No record with given id :  ${req.params.id}`);
+    
+//     Doctor.findById (req.params.id , (err , doc) =>
+//     {
+//         if(!err) res.send(doc);
+//         else
+//         {console.log("Error in retriving doctor:" + JSON.stringify(err,undefined,2));}
+//     });
+// });
 
-    Doctor.findById(req.params.id , (err , doc) =>
+router.get('/:id' ,(req,res) =>{
+    if(req.params.id=="")
+    return res.status(400).send(`No record with given id :  ${req.params.id}`);
+    
+    Doctor.findOne({ doctor_id: req.params.id } , (err , doc) =>
     {
         if(!err) res.send(doc);
         else
@@ -31,7 +43,11 @@ router.put('/:id' , (req,res)=>{
     return res.status(400).send(`No record wiht given id : + ${req.params.id}`);
 
     var emp= {
-        
+            
+            email : req.body.email,
+            password : req.body.password,
+            phone : req.body.phone,
+
             firstname : req.body.firstname,
             lastname : req.body.lastname,
             speciality : req.body.speciality,
@@ -91,9 +107,12 @@ router.post("/images",(req, res) => {
 router.post('/' , (req, res)=>
 {
     var emp=  new Doctor({
-        
+            
+            doctor_id:req.body.doctor_id,
             email : req.body.email,
             password : req.body.password,
+            phone : req.body.phone,
+
 
             firstname : req.body.firstname,
             lastname : req.body.lastname,
