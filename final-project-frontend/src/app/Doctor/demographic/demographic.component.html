@@ -3,6 +3,14 @@
 <div class="contain">
   <form #demoForm="ngForm"  class="col s12"  (ngSubmit)="onSubmit(demoForm)" enctype="multipart/form-data" >
       <input type="hidden" required name="_id" #_id="ngModel" [(ngModel)]="doctorService.selecteddoctor._id">
+      <input type="hidden"  name="degree" #degree="ngModel" [(ngModel)]="doctorService.selecteddoctor.degree">
+      <input type="hidden"  name="college" #college="ngModel" [(ngModel)]="doctorService.selecteddoctor.eoy">
+      <input type="hidden"  name="eoc" #eoc="ngModel" [(ngModel)]="doctorService.selecteddoctor.eoc">
+      <input type="hidden"  name="eoy" #eoy="ngModel" [(ngModel)]="doctorService.selecteddoctor.eoy">
+      <input type="hidden"  name="clinicname" #degree="ngModel" [(ngModel)]="doctorService.selecteddoctor.clinicname">
+      <input type="hidden"  name="cliniccity" #college="ngModel" [(ngModel)]="doctorService.selecteddoctor.cliniccity">
+      <input type="hidden"  name="clinicaddress" #eoc="ngModel" [(ngModel)]="doctorService.selecteddoctor.clinicaddress">
+      
       <div class="input-field col s5">
       <div class="row">
           <div class="input-field col s12">

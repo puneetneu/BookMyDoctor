@@ -10,6 +10,13 @@ import { EducationComponent } from './Doctor/education/education.component';
 import { SidebarComponent } from './Doctor/sidebar/sidebar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DemoMaterialModule} from './material-module';
+import { MainComponent } from './Doctor/main/main.component';
+import { AboutUsComponent } from './Homepage/about-us/about-us.component';
+import { ContactUsComponent } from './Homepage/contact-us/contact-us.component';
+import { FooterComponent } from './Homepage/footer/footer.component';
+import { HomeComponent } from './Homepage/home/home.component';
+import { LoginCreateComponent } from './Homepage/login-create/login-create.component';
+import { NavigationComponent } from './Homepage/navigation/navigation.component';
 
 
 
@@ -19,7 +26,14 @@ import {DemoMaterialModule} from './material-module';
     ClinicComponent,
     DemographicComponent,
     EducationComponent,
-    SidebarComponent
+    SidebarComponent,
+    MainComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    FooterComponent,
+    HomeComponent,
+    LoginCreateComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
