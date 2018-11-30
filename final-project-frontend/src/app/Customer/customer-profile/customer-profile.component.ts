@@ -52,7 +52,13 @@ export class CustomerProfileComponent implements OnInit {
     .subscribe(arg => this.customerData$ = arg);
   }
 
+  onFormSubmit(firstForm: NgForm) {
 
+  }
+
+  secondFormSubmit(secondForm: NgForm) {
+
+  }
 
   finalFormSubmit(stepper: NgForm) {
     if (stepper.invalid) {

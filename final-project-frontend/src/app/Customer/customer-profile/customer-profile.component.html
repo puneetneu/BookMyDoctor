@@ -69,5 +69,12 @@
       </div>
     </form>
   </mat-step>
-
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    Do you wish to submit the details?.
+    <div>
+      <button mat-raised-button color="primary" type="submit" (click)="finalFormSubmit(stepper)">Submit</button>
+      <button mat-raised-button color="warn" (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
 </mat-horizontal-stepper>
