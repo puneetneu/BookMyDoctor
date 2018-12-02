@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
- var Doctor = mongoose.model('Doctor',{
-        doctor_id: {type :String},
-        email: {type: String},
-        password: {type: String},
-        phone:{type: String},
+const uniqueValidator = require('mongoose-unique-validator');
+ var DoctorSchema = mongoose.Schema({
+        doctorID:{type: String},
+        email:{type : String, unique: true},
+        password:{type : String},
         firstname : {type : String},
         lastname : {type : String},
+        typeofUser:{type:String},
+        phonenumber:{type:String},
         speciality : {type : String},
         gender : {type : String},
         image:{type:String}, 
@@ -15,10 +17,8 @@ const mongoose = require('mongoose');
         eoy : {type : String},
         clinicname : {type : String},
         cliniccity : {type : String},
-        clinicaddress : {type : String}    
-     
+        clinicaddress : {type : String}     
  });
 
-
-
- module.exports= {Doctor};
+ DoctorSchema.plugin(uniqueValidator);
+ module.exports = mongoose.model('Doctor', DoctorSchema);
