@@ -20,9 +20,9 @@ export class CustomerProfileComponent implements OnInit {
   customerData$: CustomerCreateData;
   userID: string;
   maritalStatus: MaritalStatus[] = [
-    {value: 'opt1', viewValue: 'Single'},
-    {value: 'opt2', viewValue: 'Married'},
-    {value: 'opt3', viewValue: 'Divorced/Separated'}
+    {value: 'single', viewValue: 'Single'},
+    {value: 'married', viewValue: 'Married'},
+    {value: 'divorced', viewValue: 'Divorced/Separated'}
   ];
   selected: string;
   isLinear = false;
@@ -52,14 +52,6 @@ export class CustomerProfileComponent implements OnInit {
     .subscribe(arg => this.customerData$ = arg);
   }
 
-  onFormSubmit(firstForm: NgForm) {
-
-  }
-
-  secondFormSubmit(secondForm: NgForm) {
-
-  }
-
   finalFormSubmit(stepper: NgForm) {
     if (stepper.invalid) {
       return;
@@ -80,4 +72,6 @@ export class CustomerProfileComponent implements OnInit {
       this.customerData$.gender,
       this.customerData$.ifm);
   }
+
+
 }

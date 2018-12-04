@@ -1,11 +1,11 @@
 const mongoose=require('mongoose');
 
 const AppointmentSchema=mongoose.Schema({
-  user_id:{
+  customerID:{
     type:String,
     required:true
   },
-  doctor_id:{
+  doctorID:{
     type:String,
     required:true
   },

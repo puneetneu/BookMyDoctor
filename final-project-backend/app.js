@@ -2,16 +2,25 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
-var path = require('path');
+var upload = require('express-fileupload');
+
+var doctorController= require('./controllers/doctorController');
+var imagecontroller = require('./controllers/imagecontroller');
+var customercontroller= require('./controllers/customerController');
+var loginAuthenticationController=require('./controllers/loginAuthenticationController');
+var signupController=require('./controllers/signupController');
 
 var app = express();
 
-const route=require('./routes/route');
-
+app.use(upload());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api',route);
+app.use('/doctor', doctorController);
+app.use('/img', imagecontroller);
+app.use('/customer', customercontroller);
+app.use('/login', loginAuthenticationController);
+app.use('/signup',signupController);
 
 //connect to mongoose
 mongoose.connect('mongodb://localhost:27017/finalproject', { useNewUrlParser: true });

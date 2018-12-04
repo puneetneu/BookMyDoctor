@@ -28,7 +28,7 @@ export class CustomerService {
     gender: string,
     ifm: string
   ) {
-    const newCustomer: CustomerCreateData = {
+    const customer: CustomerCreateData = {
       firstname: firstName,
       lastname: lastName,
       email: emailID,
@@ -44,8 +44,9 @@ export class CustomerService {
       ifm: ifm
     };
     this.http
-      .put('http://localhost:3000/customer/' + customerid, newCustomer)
+      .put('http://localhost:3000/customer/' + customerid, customer)
       .subscribe(response => {
+        console.log('success');
         console.log(response);
       });
   }
