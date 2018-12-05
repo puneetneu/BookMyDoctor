@@ -1,4 +1,5 @@
 export class Doctor {
+<<<<<<< HEAD
    _id:string;
    doctor_id: string;
    email:string ;
@@ -13,11 +14,24 @@ export class Doctor {
    college : string;
    eoc : string;
    eoy : string ; 
+=======
+   _id: string;
+   firstname: string;
+   lastname: string;
+   speciality: string;
+   gender: string ;
+   image: string;
+   degree: string;
+   college: string;
+   eoc: string;
+   eoy: string;
+>>>>>>> origin
    clinicname: string;
    cliniccity: string;
    clinicaddress: string;
 
 }
+<<<<<<< HEAD
 
 // export class Demo{
 //    firstname : String;
@@ -33,3 +47,5 @@ export class Doctor {
 //    eoc : String;
 //    eoy : String ;
 // }
+=======
+>>>>>>> origin

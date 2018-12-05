@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms';
 import { DoctorService} from '../shared/doctor.service';
 import {Doctor} from '../shared/doctor.model';
 import { XhrFactory, HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/Homepage/auth.service';
+import {MatSnackBar} from '@angular/material';
 
 export interface Food {
   value: string;
@@ -20,15 +22,16 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
   image:any;
   imageToShow: any;
   random:any;
+  userID: string;
   selectedFile: File = null;
   fd = new FormData();
-  readonly baseURL= 'http://localhost:3000/doctors/images';
+  readonly baseURL= 'http://localhost:3000/doctor/images';
   foods: Food[] = [
     {value: 'General Physician', viewValue: 'General Physician'},
     {value: 'Cardiologists',     viewValue: 'Cardiologists'},
     {value: 'Dermatologists',    viewValue: 'Dermatologists '}
   ];
-  constructor(private doctorService : DoctorService, private http:HttpClient) {}
+  constructor(private snackBar: MatSnackBar,private doctorService : DoctorService, private http:HttpClient,  private authService: AuthService) {}
   ngAfterViewChecked()
   {
     
@@ -40,7 +43,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
-      doctor_id:"",
+      doctorID:"",
       email: "",
       password:"",
       phone: "",
@@ -56,12 +59,16 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
+      timing:{
+        mon:{ from:"",to:""},tue:{ from:"", to:""},wed:{from:"",to:""},
+        thu:{ from:"",to:""},fri:{ from:"", to:""},sat:{from:"",to:""},sun:{from:"",to:""}   
+      }
     }
     
   }
 
   ngOnInit() {
-    
+    this.userID=this.authService.getUserID();
     this.resetForm();
     this.getdoctor();
     
@@ -70,11 +77,13 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
 
   onSubmit (form :NgForm)
   {
-    this.doctorService.putDoctor(form.value).subscribe((res)=>{
-      M.toast({html: 'updated' , classes :'rounded'});  
+    this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{ 
    });
-   this.uploadimage();
    
+   this.uploadimage();
+   this.snackBar.open("details updated", "OK", {
+    duration: 2000,
+  });
 
 
    
@@ -82,9 +91,10 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
 
   getdoctor()
   {
-    this.doctorService.getDoctor("92").subscribe((res)=>{
+    this.doctorService.getDoctor(this.userID).subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
     this.getimage();
+    
     });
     
   }

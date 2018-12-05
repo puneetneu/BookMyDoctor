@@ -6,9 +6,14 @@ import {Doctor} from '../shared/doctor.model';
 
 export interface Degree {
   value: string;
+<<<<<<< HEAD
   
 }
 declare var M :any;
+=======
+}
+declare var M: any;
+>>>>>>> origin
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
@@ -26,11 +31,16 @@ export class EducationComponent implements OnInit {
     {value: 'BPTh/BPT'},
     {value: 'MD-Medicine'},
   ];
+<<<<<<< HEAD
   constructor(private doctorService : DoctorService) { }
+=======
+  constructor(private doctorService: DoctorService) { }
+>>>>>>> origin
 
   ngOnInit() {
     this.resetForm();
     this.getdoctor();
+<<<<<<< HEAD
    
   }
 
@@ -74,4 +84,40 @@ export class EducationComponent implements OnInit {
     })
   }
 
+=======
+  }
+
+  resetForm(form?: NgForm) {
+    if (form) {
+      form.reset();
+    }
+    this.doctorService.selecteddoctor = {
+      _id: '',
+      firstname : '',
+      lastname : '',
+      speciality : '',
+      gender :  '',
+      image: '',
+      degree : '',
+      college :  '',
+      eoc : '',
+      eoy :  '',
+      clinicname: '',
+      cliniccity: '',
+      clinicaddress: '',
+    };
+  }
+
+  onSubmit (form: NgForm) {
+    this.doctorService.putDoctor(form.value).subscribe((res) => {
+      M.toast({html: 'updated' , classes: 'rounded'});
+   });
+  }
+
+  getdoctor() {
+    this.doctorService.getDoctor('5bfc7eed320c823bacbd745c').subscribe((res) => {
+    this.doctorService.selecteddoctor = res as Doctor;
+    });
+  }
+>>>>>>> origin
 }
