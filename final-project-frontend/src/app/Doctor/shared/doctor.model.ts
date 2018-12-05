@@ -1,7 +1,6 @@
 export class Doctor {
-<<<<<<< HEAD
    _id:string;
-   doctor_id: string;
+   doctorID: string;
    email:string ;
    password:string;
    phone:string;
@@ -14,24 +13,12 @@ export class Doctor {
    college : string;
    eoc : string;
    eoy : string ; 
-=======
-   _id: string;
-   firstname: string;
-   lastname: string;
-   speciality: string;
-   gender: string ;
-   image: string;
-   degree: string;
-   college: string;
-   eoc: string;
-   eoy: string;
->>>>>>> origin
    clinicname: string;
    cliniccity: string;
    clinicaddress: string;
+   timing:Doctortime;
 
 }
-<<<<<<< HEAD
 
 // export class Demo{
 //    firstname : String;
@@ -47,5 +34,24 @@ export class Doctor {
 //    eoc : String;
 //    eoy : String ;
 // }
-=======
->>>>>>> origin
+
+export interface Doctortime
+{
+  mon:day;
+  tue:day;
+  wed:day;
+  thu:day;
+  fri:day;
+  sat:day;
+  sun:day;
+}
+export interface day
+{
+  from:string; to:string;
+}
+
+export interface clinic{
+  clinicname:string;
+  cliniccity:string;
+  clinicaddress:string ;
+}
