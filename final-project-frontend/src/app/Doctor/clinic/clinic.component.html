@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+
+<div class="contain">
+  <form  #clinicForm="ngForm" (ngSubmit)="onSubmit(clinicForm)">
+      <mat-grid-list cols="2" rowHeight="6:1">
+          <mat-grid-tile >
+              <mat-form-field class="example-container">
+        <input  matInput required id="clinic" placeholder="clinic"
+        name="clinicname" #clinicname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.clinicname"
+         type="text" class="validate"/>
+        
+        </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="4"></mat-grid-tile>
+        <mat-grid-tile >
+          <mat-form-field class="example-container">
+              <mat-select  required 
+=======
 <nav class="white"></nav>
 <nav class="indigo lighten-5">Profile</nav>
 <div class="contain">
@@ -23,6 +41,7 @@
       <div class="row">
           <mat-form-field class="col s5">
               <mat-select  required
+>>>>>>> origin
               placeholder="City"
               name="cliniccity" #cliniccity="ngModel"  [(ngModel)]="doctorService.selecteddoctor.cliniccity"
               >
@@ -30,6 +49,22 @@
                   {{city.value}}
                 </mat-option>
               </mat-select>
+<<<<<<< HEAD
+            </mat-form-field> 
+          </mat-grid-tile>
+
+          <mat-grid-tile >
+              <mat-form-field class="example-container">
+        <input  matInput required id="clinicaddress" placeholder="clinic address"
+        name="clinicaddress" #clinicaddress="ngModel"  [(ngModel)]="doctorService.selecteddoctor.clinicaddress"
+         type="text" class="validate"/>
+         </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile >
+        <button mat-flat-button color="primary" class="btn btn-custom right" type="submit" [disabled]="!clinicForm.valid"> Submit</button>
+      </mat-grid-tile>
+        </mat-grid-list>
+=======
             </mat-form-field>
       </div>
       <div class="row">
@@ -46,5 +81,6 @@
       </div>
     </div>
 
+>>>>>>> origin
   </form>
 </div>

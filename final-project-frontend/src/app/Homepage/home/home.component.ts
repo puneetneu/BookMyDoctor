@@ -1,13 +1,26 @@
+<<<<<<< HEAD
+import { Component, OnInit } from '@angular/core';
+=======
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth.service';
 import {Subscription} from 'rxjs';
 import { Router } from '@angular/router';
+>>>>>>> origin
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+<<<<<<< HEAD
+export class HomeComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+=======
 export class HomeComponent implements OnInit, OnDestroy {
 
   userisAuthenticated = false;
@@ -35,4 +48,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authSub.unsubscribe();
     this.doctorauth.unsubscribe();
   }
+>>>>>>> origin
 }

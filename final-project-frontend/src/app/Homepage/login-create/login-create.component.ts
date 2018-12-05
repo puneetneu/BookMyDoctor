@@ -1,11 +1,26 @@
+<<<<<<< HEAD
+import { Component, OnInit } from '@angular/core';
+=======
 import { Component, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ViewEncapsulation } from '@angular/core';
+>>>>>>> origin
 
 @Component({
   selector: 'app-login-create',
   templateUrl: './login-create.component.html',
+<<<<<<< HEAD
+  styleUrls: ['./login-create.component.scss']
+})
+export class LoginCreateComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+=======
   styleUrls: ['./login-create.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
@@ -40,4 +55,5 @@ export class LoginCreateComponent implements OnInit {
     this.isLoading = false;
   }
   ngOnInit() {}
+>>>>>>> origin
 }

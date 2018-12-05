@@ -1,5 +1,39 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+<<<<<<< HEAD
+import {DemographicComponent} from './Doctor/demographic/demographic.component';
+import {EducationComponent} from './Doctor/education/education.component';
+import {ClinicComponent} from './Doctor/clinic/clinic.component';
+import {MainComponent} from './Doctor/main/main.component';
+import {HomeComponent} from './Homepage/home/home.component';
+
+const routes: Routes = [
+  {
+    path:'',
+    component:HomeComponent
+  },
+  {
+    path:'doctor',
+    component:MainComponent,
+    children :[
+      {
+        path:'',
+        component:DemographicComponent
+      },
+      {
+        path:'education',
+        component:EducationComponent
+      },
+      {
+        path:'clinic',
+        component:ClinicComponent
+      },
+
+    ]
+  },
+
+];
+=======
 import { DoctorRegistrationComponent } from './Homepage/doctor-registration/doctor-registration.component';
 import { LoginCreateComponent } from './Homepage/login-create/login-create.component';
 import { CustomerHomepageComponent } from './Customer/customer-homepage/customer-homepage.component';
@@ -56,6 +90,7 @@ const routes: Routes = [
   component: ClinicComponent,
   canActivate : [CanActivateGuard]
 }];
+>>>>>>> origin
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
