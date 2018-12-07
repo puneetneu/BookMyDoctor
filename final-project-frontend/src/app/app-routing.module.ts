@@ -1,3 +1,4 @@
+import { CustomerPaymentComponent } from './customer-payment/customer-payment.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DoctorRegistrationComponent } from './Homepage/doctor-registration/doctor-registration.component';
@@ -34,6 +35,11 @@ const routes: Routes = [
 {
   path: 'customerAppointments',
   component: CustomerAppointmentsComponent,
+  canActivate : [CanActivateGuard]
+},
+{
+  path: 'BookAppointments',
+  component: CustomerPaymentComponent,
   canActivate : [CanActivateGuard]
 },
 {

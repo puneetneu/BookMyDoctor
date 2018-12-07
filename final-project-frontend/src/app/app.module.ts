@@ -23,6 +23,7 @@ import { ClinicComponent } from './Doctor/clinic/clinic.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
 import { MainComponent } from './Doctor/main/main.component';
 import { EducationComponent } from './Doctor/education/education.component';
+import { CustomerPaymentComponent } from './customer-payment/customer-payment.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { EducationComponent } from './Doctor/education/education.component';
     ClinicComponent,
     DemographicComponent,
     MainComponent,
-    EducationComponent
+    EducationComponent,
+    CustomerPaymentComponent
   ],
   imports: [
     BrowserModule,

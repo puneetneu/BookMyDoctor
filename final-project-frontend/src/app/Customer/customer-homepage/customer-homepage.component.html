@@ -6,7 +6,6 @@
 
   <mat-card *ngFor="let doctor of doctor">
     <mat-card-title>{{ doctor.firstname +"  "+ doctor.lastname }} </mat-card-title>
-    <div> <img class="doctorImage" src= "{{doctor.image}}" /></div>
     <mat-card-content>
       {{ "Speciality: " + doctor.speciality }}<br>
       {{ "Degree: " + doctor.degree }}<br>
@@ -19,7 +18,12 @@
       {{ "Clinic Address: " + doctor.clinicaddress }}<br>
     </mat-card-content>
 
-    <button mat-raised-button type="submit">Book </button>
+    <div> <img class="doctorImage" src= "{{doctor.image}}" /></div>
+    <button [routerLink]="[ '/BookAppointments']" routerLinkActive="active" mat-raised-button type="submit">
+
+      Book Appointments
+
+     </button>
 
   </mat-card>
 </div>
