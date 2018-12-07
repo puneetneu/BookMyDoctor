@@ -1,2 +1,25 @@
 
-<p>This homepage works</p>
+<div class="home" fxLayout="column">
+  <mat-form-field>
+    <input type= "text" placeholder="Search here" >
+  </mat-form-field>
+
+  <mat-card *ngFor="let doctor of doctor">
+    <mat-card-title>{{ doctor.firstname +"  "+ doctor.lastname }} </mat-card-title>
+    <div> <img class="doctorImage" src= "{{doctor.image}}" /></div>
+    <mat-card-content>
+      {{ "Speciality: " + doctor.speciality }}<br>
+      {{ "Degree: " + doctor.degree }}<br>
+      {{ "College: " + doctor.college }}<br>
+      {{ "Gender: " + doctor.gender }}<br>
+      {{ "EOC: " + doctor.eoc }}<br>
+      {{ "EOY: " + doctor.eoy }}<br>
+      {{ "Clinic Name: " + doctor.clinicname }}<br>
+      {{ "Clinic City: " + doctor.cliniccity }}<br>
+      {{ "Clinic Address: " + doctor.clinicaddress }}<br>
+    </mat-card-content>
+
+    <button mat-raised-button type="submit">Book </button>
+
+  </mat-card>
+</div>

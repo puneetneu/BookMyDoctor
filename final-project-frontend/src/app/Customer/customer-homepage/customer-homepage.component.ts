@@ -25,4 +25,75 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
     this.authSub.unsubscribe();
   }
 
+  handleDeleteKeyboardEvent(event: KeyboardEvent) {
+    if(event.key === 'Enter')
+    {
+      console.log("event works");
+    }
+  }
+
+  doctor=[
+
+  {
+    firstname: "Dr. Jay",
+    lastname: "JO",
+    speciality: "Ent",
+    gender: "Male",
+    image: "/assets/doc.png",
+    degree: "MBBS",
+    college: "Jayhind",
+    eoc: "",
+    eoy: "",
+    clinicname: "Kaya",
+    cliniccity: "Mumbai",
+    clinicaddress: "andheri west"
+  },
+
+  {
+    firstname: "Dr. Jay",
+    lastname: "JO",
+    speciality: "Ent",
+    gender: "Male",
+    image: "/assets/doc.png",
+    degree: "MBBS",
+    college: "Jayhind",
+    eoc: "",
+    eoy: "",
+    clinicname: "Kaya",
+    cliniccity: "Mumbai",
+    clinicaddress: "andheri west"
+  },
+
+  {
+    firstname: "Dr. Jay",
+    lastname: "Jo",
+    speciality: "Ent",
+    gender: "Male",
+    image: "/assets/doc.png",
+    degree: "MBBS",
+    college: "Jayhind",
+    eoc: "",
+    eoy: "",
+    clinicname: "Kaya",
+    cliniccity: "Mumbai",
+    clinicaddress: "andheri west"
+  },
+
+  {
+    firstname: "Dr. Jay",
+    lastname: "Jo",
+    speciality: "Ent",
+    gender: "Male",
+    image: "/assets/doc.png",
+    degree: "MBBS",
+    college: "Jayhind",
+    eoc: "",
+    eoy: "",
+    clinicname: "Kaya",
+    cliniccity: "Mumbai",
+    clinicaddress: "andheri west"
+  }
+
+];
+
 }
