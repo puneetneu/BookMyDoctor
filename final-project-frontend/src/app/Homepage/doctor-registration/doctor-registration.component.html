@@ -5,14 +5,23 @@
   <mat-grid-tile>
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title><h2>Doctor Registration</h2></mat-card-title>
+        <mat-card-title>
+          <h2>Doctor Registration</h2>
+        </mat-card-title>
       </mat-card-header>
       <mat-spinner *ngIf="isLoading"></mat-spinner>
       <mat-card-content>
+        <div class="modalClass" *ngIf="isSuccess">
+          <p><span class="closeButton" (click)="closeMessage()">X</span><br>Your account has been created. <a
+              [routerLink]="[ '/logincreate' ]" routerLinkActive="active" mat-button>
+              Click Here
+            </a> to proceed further.</p>
+        </div>
         <a [routerLink]="[ '/logincreate' ]" routerLinkActive="active" mat-button color="primary">
           Are you Customer? Click here to proceed
         </a>
         <form class="example-form" *ngIf="!isLoading" (submit)="onCreate(createForm)" #createForm="ngForm">
+
           <mat-form-field class="example-full-width">
             <input matInput placeholder="First Name" ngModel required type="text" #firstNameCreate="ngModel" name="firstName">
             <mat-error *ngIf="firstNameCreate.invalid">
@@ -47,10 +56,9 @@
           </mat-form-field>
           <mat-card-actions>
             <button mat-raised-button color="primary" type="submit">Create</button>
-            <button mat-raised-button color="warn" type="reset">Reset</button>
+            <button mat-raised-button color="warn" type="reset" (click)="resetCreateForm(createForm)">Reset</button>
           </mat-card-actions>
         </form>
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
-  <app-footer></app-footer>

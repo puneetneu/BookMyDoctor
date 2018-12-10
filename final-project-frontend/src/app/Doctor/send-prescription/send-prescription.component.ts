@@ -3,6 +3,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DoctorService} from '../shared/doctor.service';
 import { Doctor } from '../shared/doctor.model';
 
+
+export interface DialogData {
+  customerID: string;
+  doctorID: string;
+}
 interface customer {
   firstname:string;
   lastname:string;
@@ -52,8 +57,8 @@ export class SendPrescriptionComponent implements OnInit {
       cliniccity:"",
       clinicaddress:"",
       timing:{
-        mon:{ from:"",to:""},tue:{ from:"", to:""},wed:{from:"",to:""},
-        thu:{ from:"",to:""},fri:{ from:"", to:""},sat:{from:"",to:""},sun:{from:"",to:""}   
+        mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
       },
       location:{
         longitude:51.678418,
@@ -91,10 +96,32 @@ export class SendPrescriptionComponent implements OnInit {
        
     })
   }
+
+  pdf()
+  {
+    var docDefinition = {
+      content: [
+        // if you don't need styles, you can use a simple string to define a paragraph
+        'This is a standard paragraph, using default style',
+   
+        // using a { text: '...' } object lets you set styling properties
+        { text: 'This paragraph will have a bigger font', fontSize: 15 },
+   
+        // if you set pass an array instead of a string, you'll be able
+        // to style any fragment individually
+        {
+          text: [
+            'This paragraph is defined as an array of elements to make it possible to ',
+            { text: 'restyle part of it and make it bigger ', fontSize: 15 },
+            'than the rest.'
+          ]
+        }
+      ]
+    };
+    
+    
+  }
   
 
 }
-export interface DialogData {
-  customerID: string;
-  doctorID: string;
-}
+

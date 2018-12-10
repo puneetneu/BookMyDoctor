@@ -9,6 +9,8 @@ import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_di
 import { DoctorService } from '../../Doctor/shared/doctor.service';
 import { Doctor } from '../../Doctor/shared/doctor.model';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import {appointment} from '../appointment';
+import { CustomerData } from 'src/app/Homepage/CustomerData';
 export interface time {
   value: string;
   no:number;
@@ -27,21 +29,38 @@ export interface timeno{
 })
 export class CustomerHomepageComponent implements OnInit, OnDestroy {
   timing:time[];
+  customer:CustomerData;
+  app:appointment;
   myControl = new FormControl();
   userisAuthenticated = false;
   userID: string;
   private authSub: Subscription;
   searchData: Specialization;
-  today = new Date();
-  currentDate = new Date().setDate(this.today.getDate());
+  
+  today = new Date() ;
+  currentDate = new Date().setDate(this.today.getDate()) 
+  tdd = this.today.getDate()+1;
+  tmm = this.today.getMonth()+1;
+  tyyyy = this.today.getFullYear();
+  stoday = this.tdd+'-'+this.tmm+'-'+this.tyyyy;
   currentDay= this.today.getDay() %7;
   currenttime:timeno;
   
   secondDate = new Date().setDate(this.today.getDate() + 1);
+  sd= new Date(this.secondDate);
+  sedd = this.sd.getDate()+1;
+  semm = this.sd.getMonth()+1;
+  seyyyy = this.sd.getFullYear();
+  ssecond = this.sedd+'/'+this.semm+'/'+this.seyyyy;
   secondDay  = (this.today.getDay()+1)%7;
   secondtime : timeno;
   
   thirdDate = new Date().setDate(this.today.getDate() + 2);
+  td= new Date(this.secondDate);
+  tedd = this.td.getDate()+1;
+  temm = this.td.getMonth()+1;
+  teyyyy = this.td.getFullYear();
+  tsecond = this.tedd+'/'+this.temm+'/'+this.teyyyy;
   thirdDay  =(this.today.getDay()+2)%7;
   thirdtime : timeno;
   
@@ -80,11 +99,12 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
         map(name => name ? this._filter(name) : this.options.slice())
       );
       this.timing= [
-        {value:'No slots Availiable for this day',no:0},{value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
+        {value:'No shedule',no:0},{value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
         {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8} 
       ];
   }
   init() {
+    
     this.data.selecteddoctor= {
       _id: '',
       doctorID: '',
@@ -133,14 +153,44 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
     this.authSub.unsubscribe();
   }
 
-  seeavailiablity(slot:number,date:number, doctor:string):number{
-    let x=0;
-     this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
-        console.log(res);
+  seeavailiablity(slot:number,date:string, doctor:string):number{
+    let x:appointment[];
+    this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
+       x= res as appointment[];
+       if(x.length===0) {console.log("no"); return 1;} 
      })
-
+   
      return 0;
   }
   
+  book(d_id:string , timeno:number , timevaue:string , date:string )
+  {
+    if(this.seeavailiablity(timeno,date,d_id)==0) { alert("already booked"); return;}
+
+    this.userID=this.authService.getUserID();
+      var name;
+      // this.customerService.getCustomerData(this.userID).subscribe((res)=>
+      // {
+        
+      // })
+     
+     this.app={
+      customerID:this.userID,
+      doctorID:d_id,
+      appointment_date:date,
+      appointment_time:timeno,
+      appointment_value:timevaue,
+      customer_name:"puneet"
+     }
+     
+     this.customerService.postappointment(this.app).subscribe((res)=>{
+        
+     });
+  }
+
+  see()
+  {
+    console.log("se");
+  }
  
 }

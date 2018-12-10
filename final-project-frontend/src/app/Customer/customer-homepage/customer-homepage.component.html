@@ -50,20 +50,19 @@
     
     <mat-tab [label]="currentDate | date: 'fullDate'">
       <mat-chip-list *ngFor="let time of timing" class="chip"> 
-        
-          <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.mon.from && currentDay==1  && doctor.timing.mon.to>=time.no)">{{time.value}}</mat-chip>
+          <mat-chip color="primary" (click)="book(doctor.doctorID,time.no,time.value,stoday)" selected *ngIf="(time.no>=doctor.timing.mon.from && currentDay==1  && doctor.timing.mon.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.tue.from && currentDay==2  && doctor.timing.tue.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.wed.from && currentDay==3  && doctor.timing.wed.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.thu.from && currentDay==4  && doctor.timing.thu.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.fri.from && currentDay==5  && doctor.timing.fri.to>=time.no)">{{time.value}}</mat-chip>
-          <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.sat.from && currentDay==6  && doctor.timing.sat.to>=time.no && seeavailiablity(time.no,currentDate,doctor)==0)">{{time.value}}</mat-chip>
+          <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.sat.from && currentDay==6  && doctor.timing.sat.to>=time.no) ">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.sun.from && currentDay==0  && doctor.timing.sun.to>=time.no )">{{time.value}}</mat-chip>
         <!-- <mat-chip color="primary" selected *ngIf="(time.no>=currenttime.from && currenttime.from!=0 && currenttime.to>=time.no)">{{time.value}}</mat-chip> -->
       </mat-chip-list>
     </mat-tab>
     <mat-tab [label]="secondDate | date: 'fullDate'">
         <mat-chip-list *ngFor="let time of timing" class="chip" > 
-          <mat-chip  color="primary" selected *ngIf="(time.no>=doctor.timing.mon.from && secondDay==1  && doctor.timing.mon.to>=time.no)">{{time.value}}</mat-chip>
+          <mat-chip  color="primary" (click)="book(doctor.doctorID,time.no,time.value,ssecond)" selected *ngIf="(time.no>=doctor.timing.mon.from && secondDay==1  && doctor.timing.mon.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.tue.from && secondDay==2  && doctor.timing.tue.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.wed.from && secondDay==3  && doctor.timing.wed.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" selected *ngIf="(time.no>=doctor.timing.thu.from && secondDay==4  && doctor.timing.thu.to>=time.no)">{{time.value}}</mat-chip>

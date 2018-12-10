@@ -1,26 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
-import {FormsModule} from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import { ClinicComponent } from './Doctor/clinic/clinic.component';
-import { DemographicComponent } from './Doctor/demographic/demographic.component';
-import { EducationComponent } from './Doctor/education/education.component';
-import { SidebarComponent } from './Doctor/sidebar/sidebar.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DemoMaterialModule} from './material-module';
-import { MainComponent } from './Doctor/main/main.component';
-import { AboutUsComponent } from './Homepage/about-us/about-us.component';
-import { ContactUsComponent } from './Homepage/contact-us/contact-us.component';
-import { FooterComponent } from './Homepage/footer/footer.component';
-import { HomeComponent } from './Homepage/home/home.component';
-import { LoginCreateComponent } from './Homepage/login-create/login-create.component';
-import { NavigationComponent } from './Homepage/navigation/navigation.component';
-
-
-=======
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -44,24 +23,20 @@ import { ClinicComponent } from './Doctor/clinic/clinic.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
 import { MainComponent } from './Doctor/main/main.component';
 import { EducationComponent } from './Doctor/education/education.component';
->>>>>>> origin
+import { ClinictimeComponent } from './Doctor/clinictime/clinictime.component';
+import {MatSnackBarModule} from "@angular/material";
+import { LocationComponent } from './Doctor/location/location.component';
+import { AppointmentComponent } from './Doctor/appointment/appointment.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SendPrescriptionComponent } from './Doctor/send-prescription/send-prescription.component';
+import {AgmCoreModule } from '@agm/core';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    ClinicComponent,
-    DemographicComponent,
-    EducationComponent,
-    SidebarComponent,
-    MainComponent,
-    AboutUsComponent,
-    ContactUsComponent,
-    FooterComponent,
-    HomeComponent,
-    LoginCreateComponent,
-    NavigationComponent
-=======
     LoginCreateComponent,
     FooterComponent,
     DoctorRegistrationComponent,
@@ -72,19 +47,16 @@ import { EducationComponent } from './Doctor/education/education.component';
     ClinicComponent,
     DemographicComponent,
     MainComponent,
-    EducationComponent
->>>>>>> origin
+    EducationComponent,
+    ClinictimeComponent,
+    LocationComponent,
+    AppointmentComponent,
+    SendPrescriptionComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-<<<<<<< HEAD
-    FormsModule,
-    BrowserAnimationsModule,
-    DemoMaterialModule,
-    HttpClientModule
-    
-=======
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
@@ -97,10 +69,19 @@ import { EducationComponent } from './Doctor/education/education.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
->>>>>>> origin
+    MatListModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatChipsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyBasa0YYrtweVdF0ZmmxEwTvKJ-TITybTo'
+    })
+
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[SendPrescriptionComponent]
 })
 export class AppModule { }

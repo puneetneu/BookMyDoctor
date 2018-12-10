@@ -41,6 +41,8 @@ router.post('/',(req, res, next) => {
         doctorID:req.body.doctorID,
         appointment_date: req.body.appointment_date,
         appointment_time: req.body.appointment_time,
+        appointment_value: req.body.appointment_value,
+        customer_name:req.body.customer_name,
         });
         newappointment.save((err, appointment) => {
             if (err) {
