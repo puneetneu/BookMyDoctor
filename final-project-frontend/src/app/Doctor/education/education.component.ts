@@ -8,7 +8,7 @@ import {MatSnackBar} from '@angular/material';
 
 export interface Degree {
   value: string;
-  
+
 }
 declare var M :any;
 @Component({
@@ -35,19 +35,19 @@ export class EducationComponent implements OnInit {
     this.userID=this.authService.getUserID();
     this.resetForm();
     this.getdoctor();
-   
+
   }
 
   resetForm(form?: NgForm)
   {
-    
+
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
       doctorID:"",
       email: "",
       password:"",
-      phone: "",
+      phonenumber: "",
       firstname : "",
       lastname : "",
       speciality : "",
@@ -56,22 +56,26 @@ export class EducationComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "", 
+      eoy :  "",
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
       timing:{
-        mon:{ from:"",to:""},tue:{ from:"", to:""},wed:{from:"",to:""},
-        thu:{ from:"",to:""},fri:{ from:"", to:""},sat:{from:"",to:""},sun:{from:"",to:""}   
+        mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
+      },
+      location:{
+        longitude:51.678418,
+        latitude:7.809007
       }
     }
-    
+
   }
 
   onSubmit (form :NgForm)
   {
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
-         
+
    });
    this.snackBar.open("details updated", "OK", {
     duration: 2000,
@@ -82,7 +86,7 @@ export class EducationComponent implements OnInit {
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
-    
+
     })
   }
 

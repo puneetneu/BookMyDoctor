@@ -23,7 +23,17 @@ import { ClinicComponent } from './Doctor/clinic/clinic.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
 import { MainComponent } from './Doctor/main/main.component';
 import { EducationComponent } from './Doctor/education/education.component';
-import { CustomerPaymentComponent } from './customer-payment/customer-payment.component';
+import { ClinictimeComponent } from './Doctor/clinictime/clinictime.component';
+import {MatSnackBarModule} from "@angular/material";
+import { LocationComponent } from './Doctor/location/location.component';
+import { AppointmentComponent } from './Doctor/appointment/appointment.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SendPrescriptionComponent } from './Doctor/send-prescription/send-prescription.component';
+import {AgmCoreModule } from '@agm/core';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +49,12 @@ import { CustomerPaymentComponent } from './customer-payment/customer-payment.co
     DemographicComponent,
     MainComponent,
     EducationComponent,
-    CustomerPaymentComponent
+
+    ClinictimeComponent,
+    LocationComponent,
+    AppointmentComponent,
+    SendPrescriptionComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -56,9 +71,19 @@ import { CustomerPaymentComponent } from './customer-payment/customer-payment.co
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatChipsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyBasa0YYrtweVdF0ZmmxEwTvKJ-TITybTo'
+    })
+
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[SendPrescriptionComponent]
 })
 export class AppModule { }

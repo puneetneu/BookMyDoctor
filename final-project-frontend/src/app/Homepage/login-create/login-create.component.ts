@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ViewEncapsulation } from '@angular/core';
 
+
 @Component({
   selector: 'app-login-create',
   templateUrl: './login-create.component.html',
@@ -12,7 +13,9 @@ import { ViewEncapsulation } from '@angular/core';
 export class LoginCreateComponent implements OnInit {
   isLoading = false;
   labelPosition = 'customer';
-
+  isSuccess = false;
+  isNotAuthenticated = false;
+  userNotFound = false;
   constructor(public userCreate: AuthService) {}
 
   onCreate(createForm: NgForm) {
@@ -28,8 +31,9 @@ export class LoginCreateComponent implements OnInit {
               this.labelPosition,
               createForm.value.createTel
             );
-    createForm.reset();
+    createForm.resetForm();
     this.isLoading = false;
+    this.isSuccess = true;
     }
   onLogin(loginForm: NgForm) {
     if (loginForm.invalid) {
@@ -38,6 +42,22 @@ export class LoginCreateComponent implements OnInit {
     this.isLoading = true;
     this.userCreate.login(loginForm.value.email, loginForm.value.password);
     this.isLoading = false;
+    this.isNotAuthenticated = false;
+    this.userNotFound = false;
   }
-  ngOnInit() {}
+  resetLoginForm(loginForm: NgForm) {
+    loginForm.resetForm();
+  }
+  resetCreateForm(createForm: NgForm) {
+    createForm.resetForm();
+  }
+  closeMessage() {
+    this.isSuccess = false;
+    this.isNotAuthenticated = false;
+    this.userNotFound = false;
+  }
+  ngOnInit() {
+  this.isNotAuthenticated = this.userCreate.getAuthenticationStatus();
+  this.userNotFound = this.userCreate.getUserNotFoundStatus();
+  }
 }

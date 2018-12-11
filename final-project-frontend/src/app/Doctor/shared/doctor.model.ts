@@ -1,22 +1,23 @@
 export class Doctor {
-   _id:string;
-   doctorID: string;
-   email:string ;
-   password:string;
-   phone:string;
-   firstname : string;
-   lastname : string;
-   speciality : string;
-   gender : string ;
-   image:string;
-   degree : string;
-   college : string;
-   eoc : string;
-   eoy : string ; 
-   clinicname: string;
-   cliniccity: string;
-   clinicaddress: string;
-   timing:Doctortime;
+  _id:string;
+  doctorID: string;
+  email:string ;
+  password:string;
+  phonenumber:string;
+  firstname : string;
+  lastname : string;
+  speciality : string;
+  gender : string ;
+  image:string;
+  degree : string;
+  college : string;
+  eoc : string;
+  eoy : string ;
+  clinicname: string;
+  cliniccity: string;
+  clinicaddress: string;
+  timing:Doctortime;
+  location:Location;
 
 }
 
@@ -35,23 +36,34 @@ export class Doctor {
 //    eoy : String ;
 // }
 
+export interface Location
+{
+ longitude:number;
+ latitude:number;
+}
 export interface Doctortime
 {
-  mon:day;
-  tue:day;
-  wed:day;
-  thu:day;
-  fri:day;
-  sat:day;
-  sun:day;
+ mon:day;
+ tue:day;
+ wed:day;
+ thu:day;
+ fri:day;
+ sat:day;
+ sun:day;
 }
 export interface day
 {
-  from:string; to:string;
+ from:number; to:number;
 }
 
 export interface clinic{
-  clinicname:string;
-  cliniccity:string;
-  clinicaddress:string ;
+ clinicname:string;
+ cliniccity:string;
+ clinicaddress:string ;
+}
+export interface appointment{
+  customerID:string;
+  doctorID:string;
+  appointment_date:string;
+  appointment_time:string;
 }

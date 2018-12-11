@@ -17,7 +17,9 @@ const uniqueValidator = require('mongoose-unique-validator');
         eoy : {type : String},
         clinicname : {type : String},
         cliniccity : {type : String},
-        clinicaddress : {type : String}     
+        clinicaddress : {type : String},
+        timing:{type:Object,require:false},
+        location:{type:Object}
  });
 
  DoctorSchema.plugin(uniqueValidator);

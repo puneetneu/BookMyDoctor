@@ -10,7 +10,9 @@ import {Doctor } from './doctor.model';
 export class DoctorService {
   selecteddoctor : Doctor;
   doctors: Doctor[];
-  
+  lat:number;
+  readonly appURL='http://localhost:3000/appointment';
+  readonly custURL='http://localhost:3000/customer';
   readonly baseURL= 'http://localhost:3000/doctor';
   constructor(private http :HttpClient) { }
 
@@ -30,5 +32,14 @@ export class DoctorService {
      return this.http.get(this.baseURL + `/${_id}` );
   }
 
-  
+  getappoinments(_id:string)
+  {
+    return this.http.get(this.appURL+`/${_id}`);
+  }
+
+  getcustomer(_id:string)
+  {
+    return this.http.get(this.custURL+ `/${_id}`);
+  }
+
 }

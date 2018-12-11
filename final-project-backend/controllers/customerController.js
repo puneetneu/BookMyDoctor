@@ -5,6 +5,14 @@ const bcrypt = require('bcrypt');
 var Customer = require('../model/customer');
 var checkAuth = require('../middleware/check-auth');
 
+router.get('/' , (req, res)=>{
+    Customer.find((err,docs) => {
+        if(!err) {res.send(docs);}
+        else
+        {console.log("Error in retriving doctors:" + JSON.stringify(err,undefined,2));}
+    });
+});
+
 router.get('/:id',(req, res, next) => {
     Customer.findOne({
         customerID: req.params.id
@@ -14,9 +22,7 @@ router.get('/:id',(req, res, next) => {
                 msg: err
             });
         } else {
-            res.json({
-                customer: customer
-            });
+            res.send(customer);
         }
     })
 });
@@ -75,7 +81,7 @@ router.post("/images", (req, res) => {
     }
 
 });
-router.put('/:id', (req, res, next) => {
+router.put('/id', (req, res, next) => {
     var customer = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -91,16 +97,13 @@ router.put('/:id', (req, res, next) => {
         gender:req.body.gender,
         ifm: req.body.ifm
     };
-    console.log("req-------------",customer)
-    
-    Customer.update({
+    Customer.updateOne({
         customerID: req.params.id
     }, {
-        $set: customer
+        $set: {customer}
     }, {
-        upsert : true
+        new: true
     }, (err, doc) => {
-        console.log('err-------------',err);
         if (!err) res.send(doc);
         else {
             console.log("Error in retriving customers:" + JSON.stringify(err, undefined, 2));

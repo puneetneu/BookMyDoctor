@@ -6,49 +6,77 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var Doctor = require('../model/doctor');
 var checkAuth =require('../middleware/check-auth');
 var ObjectId = require('mongoose').Types.ObjectId;
-router.get('/:id',(req, res, next) => {
-    Doctor.findOne({
-        doctorID: req.params.id
-    }, (err, doctor) => {
-        if (err) {
-            res.json({
-                msg: err
-            });
-        } else {
-            res.json({
-                doctor: doctor
-            });
-        }
-    })
-});
-router.put('/:id',(req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-        return res.status(400).send(`No record wiht given id : + ${req.params.id}`);
-    var emp = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        speciality: req.body.speciality,
-        gender: req.body.gender,
-        image: req.body.image,
-        degree: req.body.degree,
-        college: req.body.college,
-        eoc: req.body.eoc,
-        eoy: req.body.eoy,
-        clinicname: req.body.clinicname,
-        cliniccity: req.body.cliniccity,
-        clinicaddress: req.body.clinicaddress
-    };
-    Doctor.updateOne({doctorID:req.params.id}, {
-        $set: emp
-    }, {
-        new: true
-    }, (err, doc) => {
-        if (!err) res.send(doc);
-        else {
-            console.log("Error in retriving employees:" + JSON.stringify(err, undefined, 2));
-        }
+
+router.get('/' , (req, res)=>{
+    Doctor.find((err,docs) => {
+        if(!err) {res.send(docs);}
+        else
+        {console.log("Error in retriving doctors:" + JSON.stringify(err,undefined,2));}
     });
 });
+
+router.get('/:id' ,(req,res) =>{
+    if(req.params.id=="")
+    return res.status(400).send(`No record with given id :  ${req.params.id}`);
+    
+    Doctor.findOne({ doctorID: req.params.id } , (err , doc) =>
+    {
+        if(!err) res.send(doc);
+        else
+        {console.log("Error in retriving doctor:" + JSON.stringify(err,undefined,2));}
+    });
+});
+
+router.get('/sp/:id' ,(req,res) =>{
+    if(req.params.id=="")
+    return res.status(400).send(`No record with given id :  ${req.params.id}`);
+    
+    Doctor.find({ speciality: req.params.id } , (err , doc) =>
+    {
+        if(!err) res.send(doc);
+        else
+        {console.log("Error in retriving doctor:" + JSON.stringify(err,undefined,2));}
+    });
+});
+
+router.put('/:id' , (req,res)=>{
+    if(!ObjectId.isValid(req.params.id))
+    return res.status(400).send(`No record wiht given id : + ${req.params.id}`);
+
+    var emp= {
+            
+            email : req.body.email,
+            phone : req.body.phone,
+
+            firstname : req.body.firstname,
+            lastname : req.body.lastname,
+            speciality : req.body.speciality,
+            gender : req.body.gender,
+            image:req.body.image, 
+        
+         
+            degree : req.body.degree,
+            college : req.body.college,
+            eoc : req.body.eoc,
+            eoy : req.body.eoy,
+            
+            clinicname : req.body.clinicname,
+            cliniccity : req.body.cliniccity,
+            clinicaddress : req.body.clinicaddress,
+            timing:req.body.timing,
+            location:req.body.location
+    };
+    console.log("doc----------------" ,emp );
+
+    Doctor.findByIdAndUpdate(req.params.id, {$set :emp }, {new :true} ,(err,doc)=>
+    {
+        if(!err) res.send(doc);
+        else
+        {console.log("Error in retriving Doctor:" + JSON.stringify(err,undefined,2));}
+    });
+
+});
+
 router.post("/images", (req, res) => {
     if (req.files) {
         var file = req.files.file;
@@ -63,6 +91,7 @@ router.post("/images", (req, res) => {
         })
     }
 });
+
 router.post('/',(req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const newDoctor = new Doctor({

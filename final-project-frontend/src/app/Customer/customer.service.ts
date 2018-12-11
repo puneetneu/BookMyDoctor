@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CustomerCreateData } from './CustomerCreateData';
 import { HttpClient } from '@angular/common/http';
+import {appointment} from'./appointment';
 import {map} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +71,19 @@ export class CustomerService {
             gender: result.customer.gender
           };
     }));
+  }
+  getDoctor(speciality: string) {
+     return this.http.get('http://localhost:3000/doctor/sp/' + speciality);
+  }
+
+
+  getappointment(time:number, date:string , doctor:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/time/' + time +'/date/' + date+'/doctor/' + doctor);
+  }
+
+  postappointment(app:appointment)
+  {
+     return this.http.post('http://localhost:3000/appointment/',app);
   }
 }
