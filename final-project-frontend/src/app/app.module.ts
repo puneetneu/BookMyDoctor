@@ -34,6 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SendPrescriptionComponent } from './Doctor/send-prescription/send-prescription.component';
 import {AgmCoreModule } from '@agm/core';
 import {MatChipsModule} from '@angular/material/chips';
+import { AgmMarker } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {MatChipsModule} from '@angular/material/chips';
     LocationComponent,
     AppointmentComponent,
     SendPrescriptionComponent,
-    NavigationComponent
+    NavigationComponent,
+    AgmMarker,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatPaginatorModule,
     MatDialogModule,
     MatChipsModule,
+    AgmMarker,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyBasa0YYrtweVdF0ZmmxEwTvKJ-TITybTo'
     })
