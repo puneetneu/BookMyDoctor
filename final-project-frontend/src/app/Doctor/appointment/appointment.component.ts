@@ -32,8 +32,8 @@ export class AppointmentComponent implements OnInit {
     this.userID=this.authService.getUserID();
     this.getappointments();
     // this.add();
-
-
+    
+    
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -42,7 +42,7 @@ export class AppointmentComponent implements OnInit {
     const dialogRef = this.dialog.open(SendPrescriptionComponent, {
       data: {customerID: customerID, doctorID: doctorID}
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
@@ -56,16 +56,16 @@ export class AppointmentComponent implements OnInit {
       console.log(this.appointments);
       this.dataSource=new MatTableDataSource<appointment>(this.appointments);
       this.dataSource.paginator = this.paginator;
-
+      
     });
-
-
-
+    
+    
+    
   }
-
+ 
   add()
   {
-    setTimeout(()=>{
+    setTimeout(()=>{    
 
     for (let app of this.appointments)
     {
@@ -79,15 +79,15 @@ export class AppointmentComponent implements OnInit {
         customerID:app.customerID,
         doctorID:app.doctorID
       }
-
+      
       });
       this.table.push(this.newtable);
       console.log(this.table);
     }}, 4000)
-
+    
   }
 
-
+ 
 }
 
 export interface table {

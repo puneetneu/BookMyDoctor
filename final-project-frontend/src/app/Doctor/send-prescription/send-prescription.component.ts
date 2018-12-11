@@ -30,7 +30,7 @@ export class SendPrescriptionComponent implements OnInit {
     this.intialisedoctor();
     this.getdoctor();
     this.getcustomer();
-
+    
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -52,29 +52,29 @@ export class SendPrescriptionComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "",
+      eoy :  "",  
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
       },
       location:{
         longitude:51.678418,
         latitude:7.809007
       }
     }
-
+    
     this.customer={
       firstname:"",
       lastname:"",
       gender:"",
       dob:"",
-
+      
     }
-
-
+    
+    
   }
   getdoctor()
   {
@@ -88,12 +88,12 @@ export class SendPrescriptionComponent implements OnInit {
   getcustomer()
   {
     this.doctorService.getcustomer(this.data.customerID).subscribe((res)=>{
-
+       
        this.customer=res as customer;
 
        if(this.customer.gender==undefined)this.customer.gender="";
        if(this.customer.dob==undefined)this.customer.dob="";
-
+       
     })
   }
 
@@ -103,10 +103,10 @@ export class SendPrescriptionComponent implements OnInit {
       content: [
         // if you don't need styles, you can use a simple string to define a paragraph
         'This is a standard paragraph, using default style',
-
+   
         // using a { text: '...' } object lets you set styling properties
         { text: 'This paragraph will have a bigger font', fontSize: 15 },
-
+   
         // if you set pass an array instead of a string, you'll be able
         // to style any fragment individually
         {
@@ -118,9 +118,10 @@ export class SendPrescriptionComponent implements OnInit {
         }
       ]
     };
-
-
+    
+    
   }
-
+  
 
 }
+

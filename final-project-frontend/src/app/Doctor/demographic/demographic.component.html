@@ -1,36 +1,32 @@
 
 <div class="contain">
   <form #demoForm="ngForm" (ngSubmit)="onSubmit(demoForm)" enctype="multipart/form-data" >
-    <mat-grid-list cols="2" rowHeight="6:1">
+    <mat-grid-list cols="2" rowHeight="80px">
+        <mat-grid-tile>
+            <label class="main head"> Demographic Details </label>
+        </mat-grid-tile>
+        
+        <mat-grid-tile [rowspan]="6"> 
+            <img src={{imageToShow}} alt="pic" class="img">
+            <input  name="pic" (change)="onchange($event)"
+            type="file"  accept="image/*">
+        <input type="hidden" name="image" #image="ngModel" [(ngModel)]="doctorService.selecteddoctor.image">
+      </mat-grid-tile>
+
       <mat-grid-tile >
           <mat-form-field class="example-container"> 
           <input type="text" matInput class="validate" id="first_name" required placeholder="firstname"
           name="firstname" #firstname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.firstname" />
-          
           </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [rowspan]="5"> 
-            <img src={{imageToShow}} alt="pic" style=" width: 100px ; height: 100px;">
+      </mat-grid-tile>
         
-             <br>
-            <input  name="pic" (change)="onchange($event)"
-            type="file"  accept="image/*">
-        
-        <input type="hidden" name="image" #image="ngModel" [(ngModel)]="doctorService.selecteddoctor.image">
-       
-
-        </mat-grid-tile>
         <mat-grid-tile >
             <mat-form-field class="example-container">
-      
-        <input type="text" matInput class="validate" id="last_name" required placeholder="lastname"
-        name="lastname" #lastname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.lastname" />
-        
-      </mat-form-field>
-    </mat-grid-tile>
+             <input type="text" matInput class="validate" id="last_name" required placeholder="lastname"
+             name="lastname" #lastname="ngModel"  [(ngModel)]="doctorService.selecteddoctor.lastname" />
+            </mat-form-field>
+        </mat-grid-tile>
 
-      
-      
     <mat-grid-tile >
         <mat-form-field class="example-container"> 
               <mat-select  required
@@ -49,19 +45,15 @@
           name="gender" #gender="ngModel" 
           [(ngModel)]="doctorService.selecteddoctor.gender" 
           >
-            
-              <mat-radio-button value="male">Male </mat-radio-button>
-              
+              <mat-radio-button class ="male" value="male">Male </mat-radio-button>
               <mat-radio-button value="female">Female</mat-radio-button> 
             </mat-radio-group>
-          
           </mat-grid-tile>
-          
+        
+
           <mat-grid-tile class="example-container">
            <button mat-flat-button color="primary" class="btn btn-custom right" type="submit" [disabled]="!demoForm.valid"> Submit</button>
           </mat-grid-tile>
-     
-    
            
       </mat-grid-list>
 

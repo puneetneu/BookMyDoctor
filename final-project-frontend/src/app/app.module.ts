@@ -1,3 +1,4 @@
+import { NavigationComponent } from './Homepage/navigation/navigation.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -34,7 +35,6 @@ import { SendPrescriptionComponent } from './Doctor/send-prescription/send-presc
 import {AgmCoreModule } from '@agm/core';
 import {MatChipsModule} from '@angular/material/chips';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,12 +49,11 @@ import {MatChipsModule} from '@angular/material/chips';
     DemographicComponent,
     MainComponent,
     EducationComponent,
-
     ClinictimeComponent,
     LocationComponent,
     AppointmentComponent,
     SendPrescriptionComponent,
-
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

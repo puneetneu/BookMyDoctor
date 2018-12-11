@@ -10,7 +10,19 @@ div{
     padding-top: 10px;
 }
 .example-container {
-    display: flex;
-    flex-direction: column;
-    width:100%;
+    width: 80%;
+    height: 80%;
   }
+
+  .main{
+    width: 80%;
+    height: 80%;
+    
+}
+
+.head{
+    font-size: 20px;
+}
+.contain{
+    padding-top: 80px;
+}

@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/Homepage/auth.service';
 import {MatSnackBar} from '@angular/material';
 export interface time {
   value: string;
-
+  no:number;
 }
 export interface day{
   value:string;
@@ -25,15 +25,11 @@ export class ClinictimeComponent implements OnInit {
   timing:time[];
   days:day[];
 
-  constructor(private snackBar: MatSnackBar,private doctorService : DoctorService ,private authService: AuthService) {
+  constructor(private snackBar: MatSnackBar,private doctorService : DoctorService ,private authService: AuthService) { 
     this.timing= [
-      {value:'7:00 AM'},{value:'7:15 AM'},{value:'7:30 AM'},{value:'7:45 AM'},
-      {value:'8:00 AM'},{value:'8:15 AM'},{value:'8:30 AM'},{value:'8:45 AM'},
-      {value:'9:00 AM'},{value:'9:15 AM'},{value:'9:30 AM'},{value:'9:45 AM'},
-      {value:'10:00 AM'},{value:'10:15 AM'},{value:'10:30 AM'},{value:'10:45 AM'},
-      {value:'11:00 AM'},{value:'11:15 AM'},{value:'11:30 AM'},{value:'11:45 AM'}
-
-    ];
+      {value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
+        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8} 
+      ];
     this.days=[{value:"mon"},{value:"tue"},{value:"wed"},{value:"thu"},{value:"fri"},
     {value:"sat"},{value:"sun"},];
 
@@ -43,7 +39,7 @@ export class ClinictimeComponent implements OnInit {
 
   resetForm(form?: NgForm)
   {
-
+    
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
@@ -59,13 +55,13 @@ export class ClinictimeComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "",
+      eoy :  "", 
       clinicname: "",
       cliniccity:"",
-      clinicaddress:"",
+      clinicaddress:"", 
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
       },
       location:{
         longitude:51.678418,
@@ -79,14 +75,14 @@ export class ClinictimeComponent implements OnInit {
     this.userID=this.authService.getUserID();
     this.resetForm();
     this.getdoctor();
-
+    
   }
 
   onSubmit (form :NgForm)
   {
-
+    
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
-
+       
    });
    this.snackBar.open("details updated", "OK", {
     duration: 2000,
@@ -100,11 +96,11 @@ export class ClinictimeComponent implements OnInit {
     if(this.doctorService.selecteddoctor.timing==undefined)
     this.doctorService.selecteddoctor.timing={
       mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
+      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
     }
-
+    
     })
-
+    
   }
 
 

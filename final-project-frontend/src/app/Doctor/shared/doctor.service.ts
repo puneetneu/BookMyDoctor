@@ -31,7 +31,7 @@ export class DoctorService {
   {
      return this.http.get(this.baseURL + `/${_id}` );
   }
-
+ 
   getappoinments(_id:string)
   {
     return this.http.get(this.appURL+`/${_id}`);
@@ -41,5 +41,5 @@ export class DoctorService {
   {
     return this.http.get(this.custURL+ `/${_id}`);
   }
-
+  
 }

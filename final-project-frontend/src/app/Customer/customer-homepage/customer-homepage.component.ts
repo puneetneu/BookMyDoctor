@@ -188,6 +188,10 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
      });
   }
 
+  getDirection(){
+
+  }
+
   see()
   {
     console.log("se");

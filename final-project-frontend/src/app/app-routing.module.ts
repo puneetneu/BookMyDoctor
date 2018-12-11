@@ -1,5 +1,5 @@
-
-import { NgModule } from '@angular/core';
+import { NavigationComponent } from './Homepage/navigation/navigation.component';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DoctorRegistrationComponent } from './Homepage/doctor-registration/doctor-registration.component';
 import { LoginCreateComponent } from './Homepage/login-create/login-create.component';
@@ -65,6 +65,10 @@ const routes: Routes = [
   path: 'doctortime',
   component: ClinictimeComponent,
   canActivate : [CanActivateGuard]
+},
+{
+  path: 'customerdirections',
+  component: NavigationComponent,
 },
 {
   path: 'doctorlocation',
