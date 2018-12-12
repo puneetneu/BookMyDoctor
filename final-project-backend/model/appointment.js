@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 
+// appointment schema
 const AppointmentSchema=mongoose.Schema({
   customerID:{
     type:String,

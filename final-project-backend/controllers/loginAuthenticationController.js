@@ -6,6 +6,7 @@ var router = express.Router();
 
 const User = require('../model/user');
 
+//login authentication
 router.post('/', (req, res, next) => {
     let fetchedUser;
     User.findOne({

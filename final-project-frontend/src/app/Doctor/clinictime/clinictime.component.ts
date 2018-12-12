@@ -37,6 +37,7 @@ export class ClinictimeComponent implements OnInit {
 
   }
 
+  //defining selected doctor
   resetForm(form?: NgForm)
   {
     
@@ -79,6 +80,7 @@ export class ClinictimeComponent implements OnInit {
     
   }
 
+  // update doctor
   onSubmit (form :NgForm)
   {
     
@@ -90,6 +92,7 @@ export class ClinictimeComponent implements OnInit {
   });
   }
 
+  //get particular doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{

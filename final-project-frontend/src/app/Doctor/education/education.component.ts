@@ -38,6 +38,7 @@ export class EducationComponent implements OnInit {
    
   }
 
+  //defining selected doctor
   resetForm(form?: NgForm)
   {
     
@@ -73,6 +74,7 @@ export class EducationComponent implements OnInit {
     
   }
 
+  //update informtaion
   onSubmit (form :NgForm)
   {
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
@@ -83,6 +85,7 @@ export class EducationComponent implements OnInit {
   });
   }
 
+  //get particular doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{

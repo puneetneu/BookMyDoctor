@@ -23,6 +23,7 @@ export class SeeLocationComponent implements OnInit {
     this.getdoctor();
   }
 
+  // defining selected doctor
   initialise()
 {
   this.doctorService.selecteddoctor={
@@ -55,6 +56,7 @@ export class SeeLocationComponent implements OnInit {
   }
 }
 
+//get doctor
 getdoctor()
   {
     this.doctorService.getDoctor(this.data.doctorID).subscribe((res)=>{

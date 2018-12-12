@@ -38,6 +38,7 @@ export class AppointmentComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  // send prescription
   openDialog(customerID:string , doctorID:string, appid:string): void {
     const dialogRef = this.dialog.open(SendPrescriptionComponent, {
       data: {customerID: customerID, doctorID: doctorID, appID:appid}
@@ -49,6 +50,7 @@ export class AppointmentComponent implements OnInit {
     });
   }
 
+  // get all appointments
   getappointments()
   {
     this.doctorService.getappoinments(this.userID).subscribe((res)=>{
@@ -63,6 +65,7 @@ export class AppointmentComponent implements OnInit {
  
 }
 
+// table interface
 export interface table {
  no:number;
  name:string;

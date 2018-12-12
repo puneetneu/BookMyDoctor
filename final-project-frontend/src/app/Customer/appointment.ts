@@ -1,3 +1,4 @@
+// appointment model
 export interface appointment{
     _id:string;
     customerID:string;

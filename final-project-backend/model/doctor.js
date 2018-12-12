@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+
+//doctor schema
  var DoctorSchema = mongoose.Schema({
         doctorID:{type: String},
         email:{type : String, unique: true},

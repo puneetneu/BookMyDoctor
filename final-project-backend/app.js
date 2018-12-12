@@ -13,7 +13,7 @@ var appointmentController= require('./controllers/appointmentController');
 var emailcontroller= require('./controllers/emailcontroller');
 
 var app = express();
-
+//setting contollers
 app.use(upload());
 app.use(cors());
 app.use(bodyParser.json());

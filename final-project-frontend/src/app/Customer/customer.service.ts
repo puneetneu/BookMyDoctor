@@ -14,6 +14,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
+  //create customer profile
   createCustomerProfile(
     customerid: string,
     firstName: string,
@@ -52,6 +53,8 @@ export class CustomerService {
         console.log(response);
       });
   }
+
+  //get customer 
   getCustomerData(customerid: string) {
       return this.http.get<{customer: CustomerCreateData}>('http://localhost:3000/customer/' + customerid)
       .pipe(map((result) => {
@@ -72,31 +75,37 @@ export class CustomerService {
           };
     }));
   }
+
+  //get doctor through speciality
   getDoctor(speciality: string) {
      return this.http.get('http://localhost:3000/doctor/sp/' + speciality);
   }
 
-
+ // check appointment
   getappointment(time:number, date:string , doctor:string)
   {
     return this.http.get('http://localhost:3000/appointment/time/' + time +'/date/' + date+'/doctor/' + doctor);
   }
 
+  //post appointment
   postappointment(app:any)
   {
      return this.http.post('http://localhost:3000/appointment/',app);
   }
   
+  // get appointnment for particular customer 
   getappoinments(_id:string)
   {
     return this.http.get('http://localhost:3000/appointment/cust'+`/${_id}`);
   }
 
+  //get appointment through id 
   getoneapp(_id:string)
   {
     return this.http.get('http://localhost:3000/appointment/one'+`/${_id}`);
   }
 
+  // send mail
   mail(time:string, dname:string , date:string)
   {
     return this.http.get('http://localhost:3000/email/'+ time + '/dname/' + dname + '/date/'+date);

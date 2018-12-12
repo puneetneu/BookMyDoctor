@@ -43,9 +43,10 @@ const onListening = () => {
   debug("Listening on " + bind);
 };
 
+//setting port no
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
-
+//creating server
 const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);

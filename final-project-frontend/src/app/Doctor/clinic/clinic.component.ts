@@ -25,7 +25,8 @@ export class ClinicComponent implements OnInit {
   userID: string;
  
   constructor(private snackBar: MatSnackBar,private doctorService : DoctorService, private authService: AuthService) { }
-
+ 
+  //defining slected doctor
   resetForm(form?: NgForm)
   {
     
@@ -69,6 +70,7 @@ export class ClinicComponent implements OnInit {
     
   }
 
+  // on sumbit update details
   onSubmit (form :NgForm)
   {
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
@@ -79,6 +81,7 @@ export class ClinicComponent implements OnInit {
   });
   }
 
+  // get particular doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{

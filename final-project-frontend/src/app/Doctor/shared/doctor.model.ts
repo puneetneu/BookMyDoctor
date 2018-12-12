@@ -1,3 +1,4 @@
+// doctor model
 export class Doctor {
    _id:string;
    doctorID: string;
@@ -37,11 +38,14 @@ export class Doctor {
 //    eoy : String ;
 // }
 
+//location model
 export interface Location
 {
   longitude:number;
   latitude:number;
 }
+
+// doctortime model
 export interface Doctortime
 {
   mon:day;
@@ -52,16 +56,21 @@ export interface Doctortime
   sat:day;
   sun:day;
 }
+
+// day model
 export interface day
 {
   from:number; to:number;
 }
 
+//clinic model
 export interface clinic{
   clinicname:string;
   cliniccity:string;
   clinicaddress:string ;
 }
+
+// appointment model
  export interface appointment{
    customerID:string;
    doctorID:string;

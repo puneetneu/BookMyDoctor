@@ -37,6 +37,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     
   }
 
+  //defining selected doctor
   resetForm(form?: NgForm)
   {
     
@@ -80,6 +81,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     
   }
 
+  //update informtaion
   onSubmit (form :NgForm)
   {
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{ 
@@ -94,6 +96,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
    
   }
 
+  // get particular doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
@@ -104,6 +107,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     
   }
    
+  // show image
   onchange(event)
   {
     this.selectedFile = <File>event.target.files[0];
@@ -126,6 +130,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
        
   }
 
+  //save image
   uploadimage()
   {
   
@@ -139,6 +144,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
   
   }
 
+  //create image
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -150,6 +156,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     }
  }
 
+ //image of doctor
  getimage()
  {
    if(this.doctorService.selecteddoctor.image==undefined)

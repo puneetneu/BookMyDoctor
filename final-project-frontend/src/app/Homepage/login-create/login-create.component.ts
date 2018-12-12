@@ -18,6 +18,7 @@ export class LoginCreateComponent implements OnInit {
   userNotFound = false;
   constructor(public userCreate: AuthService) {}
 
+  // create user 
   onCreate(createForm: NgForm) {
     if (createForm.invalid) {
       return;
@@ -35,6 +36,8 @@ export class LoginCreateComponent implements OnInit {
     this.isLoading = false;
     this.isSuccess = true;
     }
+
+    //login
   onLogin(loginForm: NgForm) {
     if (loginForm.invalid) {
       return;
@@ -45,9 +48,11 @@ export class LoginCreateComponent implements OnInit {
     this.isNotAuthenticated = false;
     this.userNotFound = false;
   }
+  //reset login form
   resetLoginForm(loginForm: NgForm) {
     loginForm.resetForm();
   }
+  // reset create form
   resetCreateForm(createForm: NgForm) {
     createForm.resetForm();
   }

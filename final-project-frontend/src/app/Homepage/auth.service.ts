@@ -24,6 +24,7 @@ export class AuthService {
   private msg: string;
   constructor(private router: Router, private http: HttpClient) {}
 
+  // create customer
   createCustomer(
     customerid: string,
     firstName: string,
@@ -48,7 +49,7 @@ export class AuthService {
       });
   }
 
-
+  // create doctor 
   createDoctor(
     doctorID: string,
     firstName: string,
@@ -72,6 +73,7 @@ export class AuthService {
       .subscribe(response => {
       });
   }
+  // create user
   createUser(
     firstName: string,
     lastName: string,
@@ -98,7 +100,7 @@ export class AuthService {
         }
       });
   }
-
+ // login validation
   login(email: string, password: string) {
     const authData: Auth = {email_id: email, password: password};
     this.http.post<{token: string, type: string, userID: string, msg: string}>
@@ -125,12 +127,15 @@ export class AuthService {
     });
   }
 
+  //get authentication
   getAuthenticationStatus() {
    return this.isnotAuthenticated;
   }
   getUserNotFoundStatus() {
     return this.userNotFound;
   }
+
+  //get token
   getToken() {
     return this.token;
   }
@@ -141,12 +146,15 @@ export class AuthService {
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
+  // get userid
   getUserID() {
     return this.userID;
   }
+  //check doctor authentication
   getisDoctorAuthenticated() {
   return this.isDoctorAuthenticated;
   }
+  //check customer authenticaton
   getIsCustomerAuth() {
     return this.isCustomerAuthenticated;
   }
