@@ -50,7 +50,8 @@ export class SeeLocationComponent implements OnInit {
     location:{
       longitude:7.809007,
       latitude:51.678418
-    }
+    },
+    fees:0
   }
 }
 
