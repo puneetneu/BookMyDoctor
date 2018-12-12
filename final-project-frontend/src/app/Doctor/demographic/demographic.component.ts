@@ -93,7 +93,6 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
   });
 
 
-
   }
 
   //  subscribe to get doctors services
@@ -129,16 +128,22 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
        }
 
   }
-//  upload image and post db
+
+  //save image
   uploadimage()
   {
 
     this.fd.append('file', this.selectedFile,  this.random);
+
     this.http.post(this.baseURL, this.fd, {responseType: 'text'})
     .subscribe( (res) => {
     });
+
+
+
   }
 
+  //create image
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -169,5 +174,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
    });
  }
 }
+
+
 
 }

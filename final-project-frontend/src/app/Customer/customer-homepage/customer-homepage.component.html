@@ -66,7 +66,6 @@
           <mat-chip color="primary" (click)="openDialog(doctor.doctorID,time.no,time.value,ssecond,doctor.firstname)" selected *ngIf="(time.no>=doctor.timing.fri.from && secondDay==5  && doctor.timing.fri.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" (click)="openDialog(doctor.doctorID,time.no,time.value,ssecond,doctor.firstname)" selected *ngIf="(time.no>=doctor.timing.sat.from && secondDay==6  && doctor.timing.sat.to>=time.no)">{{time.value}}</mat-chip>
           <mat-chip color="primary" (click)="openDialog(doctor.doctorID,time.no,time.value,ssecond,doctor.firstname)" selected *ngIf="(time.no>=doctor.timing.sun.from && secondDay==0  && doctor.timing.sun.to>=time.no)">{{time.value}}</mat-chip>
-
           <!-- <mat-chip color="primary" selected *ngIf="(time.no>=secondtime.from && secondtime.from!=0 && secondtime.to>=time.no)">{{time.value}}</mat-chip>
           -->
         </mat-chip-list>

@@ -3,6 +3,7 @@ var router = express.Router();
 var  Appointment = require('../model/appointment');
 var ObjectId = require('mongoose').Types.ObjectId;
 
+//get all appointment 
 router.get('/' , (req, res)=>{
     Appointment.find((err,docs) => {
         if(!err) {res.send(docs);}
@@ -11,6 +12,7 @@ router.get('/' , (req, res)=>{
     });
 });
 
+//get appointment through doctorid
 router.get('/:id' ,(req,res) =>{
     if(req.params.id=="")
     return res.status(400).send(`No record with given id :  ${req.params.id}`);
@@ -23,6 +25,7 @@ router.get('/:id' ,(req,res) =>{
     });
 });
 
+//get appointment through id 
 router.get('/one/:id' ,(req,res) =>{
     if(req.params.id=="")
     return res.status(400).send(`No record with given id :  ${req.params.id}`);
@@ -35,6 +38,7 @@ router.get('/one/:id' ,(req,res) =>{
     });
 });
 
+//get appointment through cutomer id 
 router.get('/cust/:id' ,(req,res) =>{
     if(req.params.id=="")
     return res.status(400).send(`No record with given id :  ${req.params.id}`);

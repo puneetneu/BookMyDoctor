@@ -31,12 +31,14 @@ export class CustomerProfileComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private customerService: CustomerService, private authService: AuthService) { }
 // validating form filed for customer and getting customer details on initialization
   ngOnInit() {
+    //first form
     this.firstFormGroup = this._formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', Validators.required],
       phonenumber: ['', Validators.required]
     });
+    //second form
     this.secondFormGroup = this._formBuilder.group({
       gender: ['', Validators.required],
       address: ['', Validators.required],
@@ -46,7 +48,10 @@ export class CustomerProfileComponent implements OnInit {
       ifm: ['', Validators.required],
       voluntary: ['', Validators.required]
     });
+
     this.userID = this.authService.getUserID();
+
+    //defining doctor
     this.customerData$={
       firstname:"",
       lastname:"",
@@ -72,6 +77,7 @@ export class CustomerProfileComponent implements OnInit {
     if (stepper.invalid) {
       return;
     }
+    //update customer profile
     this.customerService.createCustomerProfile(
       this.userID,
       this.customerData$.firstname,

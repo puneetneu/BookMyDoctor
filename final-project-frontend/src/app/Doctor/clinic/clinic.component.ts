@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/Homepage/auth.service';
 import {MatSnackBar} from '@angular/material';
 export interface City {
   value: string;
-
 }
 
 declare var M :any;
@@ -81,7 +80,7 @@ export class ClinicComponent implements OnInit {
   });
   }
 
-  // get doctors services
+  // get particular doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{

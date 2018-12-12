@@ -25,7 +25,6 @@ interface customer {
 })
 export class SendPrescriptionComponent implements OnInit {
  customer:any;
-
  app:appointment;
  today: number = Date.now();
  pdfMake:any;
@@ -43,7 +42,8 @@ export class SendPrescriptionComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
- //  reset form to empty fields for next time login
+
+  //defining selected doctor
   intialisedoctor()
   {
     this.app={
@@ -98,8 +98,7 @@ export class SendPrescriptionComponent implements OnInit {
 
 
   }
-
-  //  subscribe to get doctors services
+  //get selected doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.data.doctorID).subscribe((res)=>{

@@ -7,6 +7,7 @@ var Doctor = require('../model/doctor');
 var checkAuth =require('../middleware/check-auth');
 var ObjectId = require('mongoose').Types.ObjectId;
 
+//get all doctors 
 router.get('/' , (req, res)=>{
     Doctor.find((err,docs) => {
         if(!err) {res.send(docs);}
@@ -15,6 +16,7 @@ router.get('/' , (req, res)=>{
     });
 });
 
+//get doctor through id
 router.get('/:id' ,(req,res) =>{
     if(req.params.id=="")
     return res.status(400).send(`No record with given id :  ${req.params.id}`);
@@ -27,6 +29,7 @@ router.get('/:id' ,(req,res) =>{
     });
 });
 
+//get doctor through specility
 router.get('/sp/:id' ,(req,res) =>{
     if(req.params.id=="")
     return res.status(400).send(`No record with given id :  ${req.params.id}`);
@@ -39,6 +42,7 @@ router.get('/sp/:id' ,(req,res) =>{
     });
 });
 
+//update doctor
 router.put('/:id' , (req,res)=>{
     if(!ObjectId.isValid(req.params.id))
     return res.status(400).send(`No record wiht given id : + ${req.params.id}`);
@@ -77,6 +81,7 @@ router.put('/:id' , (req,res)=>{
 
 });
 
+//post images 
 router.post("/images", (req, res) => {
     if (req.files) {
         var file = req.files.file;
@@ -92,6 +97,7 @@ router.post("/images", (req, res) => {
     }
 });
 
+//post doctor
 router.post('/',(req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const newDoctor = new Doctor({
@@ -117,6 +123,7 @@ router.post('/',(req, res, next) => {
     });
 });
 
+//delete doctor
 router.delete('/:id',checkAuth, (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record wiht given id : ${req.params.id} `);

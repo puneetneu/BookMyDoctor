@@ -17,37 +17,37 @@ export class DoctorService {
   readonly baseURL= 'http://localhost:3000/doctor';
   constructor(private http :HttpClient) { }
 
-  // update a doctor
+  // create doctor
   postDoctor(emp: Doctor)
   {
     return this.http.post(this.baseURL,emp);
   }
 
-  // create a doctor
+  //update doctor
   putDoctor(emp:Doctor)
   {
     return this.http.put(this.baseURL + `/${emp._id}` , emp);
   }
 
-  //get a doctor
+  // get particular doctor
   getDoctor(_id:string)
   {
      return this.http.get(this.baseURL + `/${_id}` );
   }
 
-  // get doctors appointments
+  // get all appointments
   getappoinments(_id:string)
   {
     return this.http.get(this.appURL+`/${_id}`);
   }
 
-  //gets customer
+  // get particular customer
   getcustomer(_id:string)
   {
     return this.http.get(this.custURL+ `/${_id}`);
   }
 
-  //create updated appointment
+  //update appoinment
   updateapp(app:appointment)
   {
     return this.http.put(this.appURL+`/${app._id}` ,app);

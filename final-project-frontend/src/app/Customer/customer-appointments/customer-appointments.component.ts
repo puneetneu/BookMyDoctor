@@ -12,7 +12,6 @@ import * as jsPDF from 'jspdf';
 import { CustomerCreateData } from '../CustomerCreateData';
 
 
-
 @Component({
   selector: 'app-customer-appointments',
   templateUrl: './customer-appointments.component.html',

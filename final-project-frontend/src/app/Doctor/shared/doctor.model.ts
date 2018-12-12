@@ -1,4 +1,6 @@
+
 // define structure for doctors attributes
+
 export class Doctor {
    _id:string;
    doctorID: string;
@@ -69,7 +71,8 @@ export interface clinic{
   cliniccity:string;
   clinicaddress:string ;
 }
-// define structure for appointements attributes
+
+// appointment model
  export interface appointment{
    customerID:string;
    doctorID:string;

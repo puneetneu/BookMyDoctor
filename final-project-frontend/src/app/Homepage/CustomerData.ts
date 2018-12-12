@@ -1,3 +1,5 @@
+
+//customer interface
 export interface CustomerData {
   customerID: string;
   firstname: string;

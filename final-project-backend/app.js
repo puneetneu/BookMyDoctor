@@ -10,9 +10,10 @@ var customercontroller= require('./controllers/customerController');
 var loginAuthenticationController=require('./controllers/loginAuthenticationController');
 var signupController=require('./controllers/signupController');
 var appointmentController= require('./controllers/appointmentController');
+var emailcontroller= require('./controllers/emailcontroller');
 
 var app = express();
-
+//setting contollers
 app.use(upload());
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ app.use('/customer', customercontroller);
 app.use('/login', loginAuthenticationController);
 app.use('/signup',signupController);
 app.use('/appointment',appointmentController);
+app.use('/email', emailcontroller);
 
 //connect to mongoose
 mongoose.connect('mongodb://localhost:27017/finalproject', { useNewUrlParser: true });

@@ -55,6 +55,7 @@ export class SeeLocationComponent implements OnInit {
   }
 }
 
+//get doctor
 getdoctor()
   {
     this.doctorService.getDoctor(this.data.doctorID).subscribe((res)=>{

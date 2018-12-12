@@ -53,18 +53,18 @@ userID:string;
     this.doctorService.selecteddoctor.location.longitude=parseFloat( document.getElementById("long").innerHTML);
   }
 
- // update location using put
+ // get location of particular doctor
 get()
 {
   this.getpostion();
   this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
-
   });
   this.snackBar.open("details updated", "OK", {
    duration: 2000,
  });
 }
- //  reset form to empty fields for next time login
+
+//defining selected doctor
 initialise()
 {
   this.doctorService.selecteddoctor={
@@ -97,7 +97,7 @@ initialise()
   }
 }
 
-//  subscribe to get doctors services
+// get selected doctor
 getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{

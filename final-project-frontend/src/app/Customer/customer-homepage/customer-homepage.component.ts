@@ -13,6 +13,9 @@ import {appointment} from '../appointment';
 import { CustomerData } from 'src/app/Homepage/CustomerData';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ConfirmAppointmentComponent} from '../confirm-appointment/confirm-appointment.component';
+
+import { Email } from '@coolgk/email';
+
 // defining structure for saving time specialization
 export interface time {
   value: string;
@@ -40,7 +43,6 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   animal: string;
   private authSub: Subscription;
   searchData: Specialization;
-msg; flag;
 
   today = new Date() ;
   currentDate = new Date().setDate(this.today.getDate())
@@ -50,7 +52,7 @@ msg; flag;
   stoday = this.tdd+'-'+this.tmm+'-'+this.tyyyy;
   currentDay= this.today.getDay() %7;
   currenttime:timeno;
-
+  // next day date
   secondDate = new Date().setDate(this.today.getDate() + 1);
   sd= new Date(this.secondDate);
   sedd = this.sd.getDate();
@@ -59,7 +61,7 @@ msg; flag;
   ssecond = this.sedd+'-'+this.semm+'-'+this.seyyyy;
   secondDay  = (this.today.getDay()+1)%7;
   secondtime : timeno;
-
+  // third day date
   thirdDate = new Date().setDate(this.today.getDate() + 2);
   td= new Date(this.thirdDate);
   tedd = this.td.getDate();
@@ -70,6 +72,7 @@ msg; flag;
   thirdtime : timeno;
   custname:string;
 
+  //specialization
   options: Specialization[] = [
     {name: 'General Physician'},
     {name: 'Cardiologists'},
@@ -80,6 +83,7 @@ msg; flag;
   constructor(private authService: AuthService, private customerService: CustomerService, private data: DoctorService,public dialog: MatDialog) { }
 
   ngOnInit() {
+
     this.currenttime={
       from:0,
       to:0
@@ -143,7 +147,6 @@ msg; flag;
     };
     console.log(this.currentDate);
   }
-
   displayFn(user?: Specialization): string | undefined {
     return user ? user.name : undefined;
   }
@@ -163,17 +166,7 @@ msg; flag;
   ngOnDestroy() {
     this.authSub.unsubscribe();
   }
-// checks if slot available for booking
-  seeavailiablity(slot:number,date:string, doctor:string):void{
-    let x:appointment[];
-    let y=0;
-    this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
-       x= res as appointment[];
 
-     });
-
-
-  }
 // saving booked appointment details in db
   book(d_id:string , timeno:number , timevaue:string , date:string , d_name:string)
   {
@@ -222,5 +215,21 @@ msg; flag;
 
 
   }
+
+  //check avaliablity
+  seeavailiablity(slot:number,date:string, doctor:string):void{
+    let x:appointment[];
+    let y=0;
+    this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
+       x= res as appointment[];
+
+     });
+
+
+  }
+
+
+
+
 
 }

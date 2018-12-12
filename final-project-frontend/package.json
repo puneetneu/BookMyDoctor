@@ -23,14 +23,21 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+<<<<<<< HEAD
+=======
+    "@coolgk/email": "^3.0.2",
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
     "@ionic-native/core": "^4.18.0",
     "@ionic-native/file": "^4.18.0",
     "@ionic-native/file-opener": "^4.18.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@types/googlemaps": "^3.30.16",
     "angular2-materialize": "^15.1.10",
+    "angularfire2": "^5.1.1",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
+    "emailjs": "^2.2.0",
+    "firebase": "^5.7.0",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "jsonwebtoken": "^8.4.0",
