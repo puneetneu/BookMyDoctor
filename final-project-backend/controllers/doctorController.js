@@ -66,7 +66,6 @@ router.put('/:id' , (req,res)=>{
             timing:req.body.timing,
             location:req.body.location
     };
-    console.log("doc----------------" ,emp );
 
     Doctor.findByIdAndUpdate(req.params.id, {$set :emp }, {new :true} ,(err,doc)=>
     {
