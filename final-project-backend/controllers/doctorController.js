@@ -64,7 +64,8 @@ router.put('/:id' , (req,res)=>{
             cliniccity : req.body.cliniccity,
             clinicaddress : req.body.clinicaddress,
             timing:req.body.timing,
-            location:req.body.location
+            location:req.body.location,
+            fees:req.body.fees
     };
 
     Doctor.findByIdAndUpdate(req.params.id, {$set :emp }, {new :true} ,(err,doc)=>
