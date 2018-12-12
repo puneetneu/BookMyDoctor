@@ -1,14 +1,14 @@
-
+<!-- clinic schedule form -->
 <div class="contain">
     <form  #clinictimeForm="ngForm" (ngSubmit)="onSubmit(clinicForm)">
-        
+
         <mat-grid-list cols="2" rowHeight="80px">
-           
+
             <mat-grid-tile class="main">
                 <span>Monday</span>
                 <mat-form-field class="select">
-                    <mat-select  
-                    placeholder="From" name="monfrom" #monfrom="ngModel" 
+                    <mat-select
+                    placeholder="From" name="monfrom" #monfrom="ngModel"
                      [(ngModel)]="this.doctorService.selecteddoctor.timing.mon.from"
                     >
                       <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -17,15 +17,15 @@
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field class="select">
-                      <mat-select  
-                      placeholder="To" name="monto" #monto="ngModel" 
+                      <mat-select
+                      placeholder="To" name="monto" #monto="ngModel"
                       [(ngModel)]="this.doctorService.selecteddoctor.timing.mon.to"
                       >
                         <mat-option *ngFor="let time of timing" [value]="time.no">
                           {{time.value}}
                         </mat-option>
                       </mat-select>
-                    </mat-form-field>  
+                    </mat-form-field>
           </mat-grid-tile>
 
           <mat-grid-tile class="main" [rowspan]="8">
@@ -35,8 +35,8 @@
           <mat-grid-tile class="main">
               <span>Tuesday </span>
               <mat-form-field class="select">
-                  <mat-select 
-                  placeholder="From" name="tuefrom" #tuefrom="ngModel" 
+                  <mat-select
+                  placeholder="From" name="tuefrom" #tuefrom="ngModel"
                    [(ngModel)]="this.doctorService.selecteddoctor.timing.tue.from"
                   >
                     <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -45,22 +45,22 @@
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field class="select">
-                    <mat-select  
-                    placeholder="To" name="tueto" #tueto="ngModel" 
+                    <mat-select
+                    placeholder="To" name="tueto" #tueto="ngModel"
                     [(ngModel)]="this.doctorService.selecteddoctor.timing.tue.to"
                     >
                       <mat-option *ngFor="let time of timing" [value]="time.no">
                         {{time.value}}
                       </mat-option>
                     </mat-select>
-                  </mat-form-field> 
+                  </mat-form-field>
             </mat-grid-tile>
-  
+
             <mat-grid-tile class="main">
                 <span>Wednesday </span>
-                <mat-form-field class="select"> 
-                    <mat-select  
-                    placeholder="From" name="wedfrom" #monfrom="ngModel" 
+                <mat-form-field class="select">
+                    <mat-select
+                    placeholder="From" name="wedfrom" #monfrom="ngModel"
                      [(ngModel)]="this.doctorService.selecteddoctor.timing.wed.from"
                     >
                       <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -69,8 +69,8 @@
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field class="select">
-                      <mat-select  
-                      placeholder="To" name="wedto" #monto="ngModel" 
+                      <mat-select
+                      placeholder="To" name="wedto" #monto="ngModel"
                       [(ngModel)]="this.doctorService.selecteddoctor.timing.wed.to"
                       >
                         <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -82,9 +82,9 @@
 
         <mat-grid-tile class="main">
             <span>Thursday </span>
-            <mat-form-field class="select"> 
-                <mat-select  
-                placeholder="From" name="thufrom" #thufrom="ngModel" 
+            <mat-form-field class="select">
+                <mat-select
+                placeholder="From" name="thufrom" #thufrom="ngModel"
                  [(ngModel)]="this.doctorService.selecteddoctor.timing.thu.from"
                 >
                   <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -93,8 +93,8 @@
                 </mat-select>
               </mat-form-field>
               <mat-form-field class="select">
-                  <mat-select  
-                  placeholder="To" name="thuto" #thuto="ngModel" 
+                  <mat-select
+                  placeholder="To" name="thuto" #thuto="ngModel"
                   [(ngModel)]="this.doctorService.selecteddoctor.timing.thu.to"
                   >
                     <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -107,9 +107,9 @@
 
     <mat-grid-tile class="main">
         <span>Friday </span>
-        <mat-form-field class="select"> 
-            <mat-select  
-            placeholder="From" name="frifrom" #frifrom="ngModel" 
+        <mat-form-field class="select">
+            <mat-select
+            placeholder="From" name="frifrom" #frifrom="ngModel"
              [(ngModel)]="this.doctorService.selecteddoctor.timing.fri.from"
             >
               <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -118,8 +118,8 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field class="select">
-              <mat-select  
-              placeholder="To" name="frito" #frito="ngModel" 
+              <mat-select
+              placeholder="To" name="frito" #frito="ngModel"
               [(ngModel)]="this.doctorService.selecteddoctor.timing.fri.to"
               >
                 <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -132,9 +132,9 @@
 
 <mat-grid-tile class="main">
     <span>Saturday </span>
-    <mat-form-field class="select"> 
-        <mat-select  
-        placeholder="From" name="satfrom" #satfrom="ngModel" 
+    <mat-form-field class="select">
+        <mat-select
+        placeholder="From" name="satfrom" #satfrom="ngModel"
          [(ngModel)]="this.doctorService.selecteddoctor.timing.sat.from"
         >
           <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -143,8 +143,8 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="select">
-          <mat-select  
-          placeholder="To" name="satto" #satto="ngModel" 
+          <mat-select
+          placeholder="To" name="satto" #satto="ngModel"
           [(ngModel)]="this.doctorService.selecteddoctor.timing.sat.to"
           >
             <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -157,9 +157,9 @@
 
 <mat-grid-tile class="main">
     <span>Sunday </span>
-    <mat-form-field class="select"> 
-        <mat-select  
-        placeholder="From" name="sunfrom" #sunfrom="ngModel" 
+    <mat-form-field class="select">
+        <mat-select
+        placeholder="From" name="sunfrom" #sunfrom="ngModel"
          [(ngModel)]="this.doctorService.selecteddoctor.timing.sun.from"
         >
           <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -168,8 +168,8 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="select">
-          <mat-select  
-          placeholder="To" name="sunto" #sunto="ngModel" 
+          <mat-select
+          placeholder="To" name="sunto" #sunto="ngModel"
           [(ngModel)]="this.doctorService.selecteddoctor.timing.sun.to"
           >
             <mat-option *ngFor="let time of timing" [value]="time.no">
@@ -186,8 +186,7 @@
         <mat-grid-tile class="main">
           <button mat-flat-button color="primary" class="btn btn-custom right" type="submit" [disabled]="!clinictimeForm.valid"> Submit</button>
         </mat-grid-tile>
-      
+
       </mat-grid-list>
     </form>
   </div>
-  

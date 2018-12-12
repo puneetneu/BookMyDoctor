@@ -29,12 +29,12 @@ export class DoctorService {
     return this.http.put(this.baseURL + `/${emp._id}` , emp);
   }
 
-  // get particular doctor 
+  // get particular doctor
   getDoctor(_id:string)
   {
      return this.http.get(this.baseURL + `/${_id}` );
   }
- 
+
   // get all appointments
   getappoinments(_id:string)
   {
@@ -46,14 +46,14 @@ export class DoctorService {
   {
     return this.http.get(this.custURL+ `/${_id}`);
   }
-  
+
   //update appoinment
   updateapp(app:appointment)
   {
     return this.http.put(this.appURL+`/${app._id}` ,app);
   }
 
-  // get appointemnt
+  //get an instance of appointment
   getoneapp(_id:string)
   {
     return this.http.get('http://localhost:3000/appointment/one'+`/${_id}`);

@@ -23,7 +23,10 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+<<<<<<< HEAD
+=======
     "@coolgk/email": "^3.0.2",
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
     "@ionic-native/core": "^4.18.0",
     "@ionic-native/file": "^4.18.0",
     "@ionic-native/file-opener": "^4.18.0",

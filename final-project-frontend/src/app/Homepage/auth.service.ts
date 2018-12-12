@@ -49,7 +49,7 @@ export class AuthService {
       });
   }
 
-  // create doctor 
+  // create doctor
   createDoctor(
     doctorID: string,
     firstName: string,
@@ -127,15 +127,12 @@ export class AuthService {
     });
   }
 
-  //get authentication
   getAuthenticationStatus() {
    return this.isnotAuthenticated;
   }
   getUserNotFoundStatus() {
     return this.userNotFound;
   }
-
-  //get token
   getToken() {
     return this.token;
   }

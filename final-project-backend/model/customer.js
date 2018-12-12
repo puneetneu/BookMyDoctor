@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
+<<<<<<< HEAD
+=======
 //customer schema
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
 const CustomerSchema = mongoose.Schema({
         customerID: {type: String},
         email:{type : String, unique: true},

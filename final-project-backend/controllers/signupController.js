@@ -3,7 +3,10 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 var User = require('../model/user');
 
+<<<<<<< HEAD
+=======
 //sign up 
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
 router.post('/', (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const newUser = new User({

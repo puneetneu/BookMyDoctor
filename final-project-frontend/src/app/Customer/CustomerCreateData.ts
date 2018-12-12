@@ -1,3 +1,4 @@
+// defines the structure of customer data
 export interface CustomerCreateData {
   firstname: string;
   lastname: string;

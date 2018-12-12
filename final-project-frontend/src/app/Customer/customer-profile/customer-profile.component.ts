@@ -29,9 +29,9 @@ export class CustomerProfileComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   constructor(private _formBuilder: FormBuilder, private customerService: CustomerService, private authService: AuthService) { }
-
+// validating form filed for customer and getting customer details on initialization
   ngOnInit() {
-    //first form 
+    //first form
     this.firstFormGroup = this._formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
@@ -48,7 +48,7 @@ export class CustomerProfileComponent implements OnInit {
       ifm: ['', Validators.required],
       voluntary: ['', Validators.required]
     });
-    
+
     this.userID = this.authService.getUserID();
 
     //defining doctor
@@ -72,7 +72,7 @@ export class CustomerProfileComponent implements OnInit {
     .subscribe(arg => this.customerData$ = arg );
     console.log(this.customerData$);
   }
-
+// validate and create profile for customer
   finalFormSubmit(stepper: NgForm) {
     if (stepper.invalid) {
       return;

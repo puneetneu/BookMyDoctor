@@ -25,7 +25,6 @@ interface customer {
 })
 export class SendPrescriptionComponent implements OnInit {
  customer:any;
-   
  app:appointment;
  today: number = Date.now();
  pdfMake:any;
@@ -38,7 +37,7 @@ export class SendPrescriptionComponent implements OnInit {
     this.getdoctor();
     this.getcustomer();
     this.getapp();
-    
+
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -59,6 +58,7 @@ export class SendPrescriptionComponent implements OnInit {
       doctor_name:""
 
     }
+     //  reset form to empty fields for next time login
     this.doctorService.selecteddoctor={
       _id:"",
       doctorID:"",
@@ -73,13 +73,13 @@ export class SendPrescriptionComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "",  
+      eoy :  "",
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
       },
       location:{
         longitude:51.678418,
@@ -87,7 +87,7 @@ export class SendPrescriptionComponent implements OnInit {
       },
       fees:0
     }
-    
+
     this.customer={customer:{
       firstname:"",
       lastname:"",
@@ -95,8 +95,8 @@ export class SendPrescriptionComponent implements OnInit {
       dob:"",
     }
     }
-    
-    
+
+
   }
   //get selected doctor
   getdoctor()
@@ -108,20 +108,20 @@ export class SendPrescriptionComponent implements OnInit {
     })
   }
 
-  //get particular customer
+  //  subscribe to get customer services
   getcustomer()
   {
     this.doctorService.getcustomer(this.data.customerID).subscribe((res)=>{
-       
+
        this.customer=res ;
       //   console.log(this.customer);
       //  if(this.customer.gender==undefined)this.customer.gender="";
       //  if(this.customer.dob==undefined)this.customer.dob="";
-       
+
     })
   }
 
-  //update appointment
+  // get updated appointment details in the downloadable format
   updateapp()
   {
     this.doctorService.updateapp(this.app).subscribe((res)=>{
@@ -129,18 +129,18 @@ export class SendPrescriptionComponent implements OnInit {
     })
   }
 
-  //get appointment
+  // get on instance of appointment in the downloadable format
   getapp()
   {
     this.doctorService.getoneapp(this.data.appID).subscribe((res)=>{
       this.app=res as appointment;
       console.log(this.app);
-      
+
     })
   }
 
- 
-  
+
+
 
 }
 

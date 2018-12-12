@@ -19,6 +19,14 @@ const AppointmentSchema=mongoose.Schema({
     required:true
   },
   appointment_value:{
+<<<<<<< HEAD
+    type:String,
+    required:true
+  },
+  doctor_name:{
+    type:String,
+    required:true
+=======
     type:String,
     required:true
   }
@@ -29,6 +37,7 @@ const AppointmentSchema=mongoose.Schema({
   doctor_name:{
     type:String,
     required:true
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
   },
   prescription:String
 });

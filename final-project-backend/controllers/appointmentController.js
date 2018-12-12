@@ -70,7 +70,7 @@ router.post('/',(req, res, next) => {
         appointment_date: req.body.appointment_date,
         appointment_time: req.body.appointment_time,
         appointment_value: req.body.appointment_value,
-        customer_name:req.body.customer_name,
+        // customer_name:req.body.customer_name,
         doctor_name:req.body.doctor_name,
         prescription:req.body.prescription
         });

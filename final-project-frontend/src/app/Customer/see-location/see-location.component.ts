@@ -17,13 +17,12 @@ export class SeeLocationComponent implements OnInit {
   constructor(private doctorService : DoctorService ,private authService: AuthService,
     public dialogRef: MatDialogRef<SeeLocationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
+// on initialization get doctor details and clinic location
   ngOnInit() {
     this.initialise();
     this.getdoctor();
   }
 
-  // defining selected doctor
   initialise()
 {
   this.doctorService.selecteddoctor={
@@ -40,13 +39,13 @@ export class SeeLocationComponent implements OnInit {
     degree : "",
     college :  "",
     eoc : "",
-    eoy :  "", 
+    eoy :  "",
     clinicname: "",
     cliniccity:"",
     clinicaddress:"",
     timing:{
       mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
     },
     location:{
       longitude:7.809007,
@@ -66,7 +65,7 @@ getdoctor()
       longitude:7.809007,
       latitude:51.678418
     }
-    
+
     })
   }
 

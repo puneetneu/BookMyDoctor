@@ -5,7 +5,10 @@ const bcrypt = require('bcrypt');
 var Customer = require('../model/customer');
 var checkAuth = require('../middleware/check-auth');
 
+<<<<<<< HEAD
+=======
 //get all customer
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
 router.get('/' , (req, res)=>{
     Customer.find((err,docs) => {
         if(!err) {res.send(docs);}
@@ -14,7 +17,10 @@ router.get('/' , (req, res)=>{
     });
 });
 
+<<<<<<< HEAD
+=======
 //get customer through id
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
 router.get('/:id',(req, res, next) => {
     Customer.findOne({
         customerID: req.params.id
@@ -114,6 +120,9 @@ router.put('/:id', (req, res, next) => {
         }
     });
 });
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
 module.exports = router;

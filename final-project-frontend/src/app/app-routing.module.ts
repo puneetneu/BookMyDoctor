@@ -6,7 +6,6 @@ import { CustomerHomepageComponent } from './Customer/customer-homepage/customer
 import { CustomerProfileComponent } from './Customer/customer-profile/customer-profile.component';
 import { CustomerAppointmentsComponent } from './Customer/customer-appointments/customer-appointments.component';
 import { CanActivateGuard } from './Homepage/auth.guard';
-import { MainComponent } from './Doctor/main/main.component';
 import { EducationComponent } from './Doctor/education/education.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
 import { ClinicComponent } from './Doctor/clinic/clinic.component';
@@ -38,11 +37,6 @@ const routes: Routes = [
 {
   path: 'customerAppointments',
   component: CustomerAppointmentsComponent,
-  canActivate : [CanActivateGuard]
-},
-{
-  path: 'doctorHome',
-  component: AppointmentComponent,
   canActivate : [CanActivateGuard]
 },
 {

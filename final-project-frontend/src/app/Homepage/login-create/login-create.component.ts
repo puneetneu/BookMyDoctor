@@ -18,7 +18,7 @@ export class LoginCreateComponent implements OnInit {
   userNotFound = false;
   constructor(public userCreate: AuthService) {}
 
-  // create user 
+  // create user
   onCreate(createForm: NgForm) {
     if (createForm.invalid) {
       return;

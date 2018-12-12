@@ -26,6 +26,8 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
   selectedFile: File = null;
   fd = new FormData();
   readonly baseURL= 'http://localhost:3000/doctor/images';
+
+  // initialize to default categories of specialities
   foods: Food[] = [
     {value: 'General Physician', viewValue: 'General Physician'},
     {value: 'Cardiologists',     viewValue: 'Cardiologists'},
@@ -34,13 +36,12 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
   constructor(private snackBar: MatSnackBar,private doctorService : DoctorService, private http:HttpClient,  private authService: AuthService) {}
   ngAfterViewChecked()
   {
-    
-  }
 
-  //defining selected doctor
+  }
+ //  reset form to empty fields for next time login
   resetForm(form?: NgForm)
   {
-    
+
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
@@ -56,13 +57,13 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "",  
+      eoy :  "",
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
       },
       location:{
         longitude:51.678418,
@@ -70,49 +71,47 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
       },
       fees:0
     }
-    
+
   }
 
   ngOnInit() {
     this.userID=this.authService.getUserID();
     this.resetForm();
     this.getdoctor();
-    
-    
-  }
 
-  //update informtaion
+
+  }
+// update demographics using put
   onSubmit (form :NgForm)
   {
-    this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{ 
+    this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
    });
-   
+
    this.uploadimage();
    this.snackBar.open("details updated", "OK", {
     duration: 2000,
   });
 
 
-   
   }
 
-  // get particular doctor
+  //  subscribe to get doctors services
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
     this.getimage();
-    
+
     });
-    
+
   }
-   
-  // show image
+
+  // get options to select from files
   onchange(event)
   {
     this.selectedFile = <File>event.target.files[0];
     console.log(event.target.files[0].name);
-    
+
     var reader  = new FileReader();
 
        reader.onloadend = () => {
@@ -127,21 +126,21 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
        } else {
            this.imageToShow = "";
        }
-       
+
   }
 
   //save image
   uploadimage()
   {
-  
+
     this.fd.append('file', this.selectedFile,  this.random);
-    
+
     this.http.post(this.baseURL, this.fd, {responseType: 'text'})
     .subscribe( (res) => {
     });
 
-    
-  
+
+
   }
 
   //create image
@@ -150,13 +149,13 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     reader.addEventListener("load", () => {
        this.imageToShow = reader.result;
     }, false);
- 
+
     if (image) {
        reader.readAsDataURL(image);
     }
  }
 
- //image of doctor
+//  displays image
  getimage()
  {
    if(this.doctorService.selecteddoctor.image==undefined)
@@ -164,7 +163,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
     this.http.get('http://localhost:3000/img/dummy.png',{responseType: 'blob'}).subscribe((res) => {
       console.log(res);
     this.createImageFromBlob(res);
-  
+
      });
    }
    else{
@@ -176,6 +175,6 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
  }
 }
 
-  
- 
+
+
 }

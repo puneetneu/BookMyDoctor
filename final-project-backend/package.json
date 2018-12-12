@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
+    "bcrypt": "git+https://github.com/kelektiv/node.bcrypt.js.git#master",
+=======
     "bcrypt": "^3.0.2",
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "emailjs": "^2.2.0",
@@ -18,7 +22,10 @@
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.13",
     "mongoose-unique-validator": "^2.0.2",
+<<<<<<< HEAD
+=======
     "nodemailer": "^4.7.0",
+>>>>>>> 568cb68c614f593f5c164d96143771c74a2fb232
     "nodemon": "^1.18.6"
   }
 }

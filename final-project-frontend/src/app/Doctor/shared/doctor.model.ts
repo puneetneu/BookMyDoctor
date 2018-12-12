@@ -1,4 +1,6 @@
-// doctor model
+
+// define structure for doctors attributes
+
 export class Doctor {
    _id:string;
    doctorID: string;
@@ -13,7 +15,7 @@ export class Doctor {
    degree : string;
    college : string;
    eoc : string;
-   eoy : string ; 
+   eoy : string ;
    clinicname: string;
    cliniccity: string;
    clinicaddress: string;
@@ -38,14 +40,14 @@ export class Doctor {
 //    eoy : String ;
 // }
 
-//location model
+// // define structure for location attributes
 export interface Location
 {
   longitude:number;
   latitude:number;
 }
 
-// doctortime model
+// define structure for doctorstime
 export interface Doctortime
 {
   mon:day;
@@ -57,13 +59,13 @@ export interface Doctortime
   sun:day;
 }
 
-// day model
+// define structure for days attributes
 export interface day
 {
   from:number; to:number;
 }
 
-//clinic model
+// define structure for clinics attributes
 export interface clinic{
   clinicname:string;
   cliniccity:string;

@@ -8,7 +8,7 @@ import {MatSnackBar} from '@angular/material';
 
 export interface Degree {
   value: string;
-  
+
 }
 declare var M :any;
 @Component({
@@ -18,6 +18,8 @@ declare var M :any;
 })
 export class EducationComponent implements OnInit {
   userID: string;
+
+  // initialize default degrees for drop down
   degrees: Degree[] = [
     {value: 'BDS'},
     {value: 'MBBS'},
@@ -35,13 +37,12 @@ export class EducationComponent implements OnInit {
     this.userID=this.authService.getUserID();
     this.resetForm();
     this.getdoctor();
-   
-  }
 
-  //defining selected doctor
+  }
+ //  reset form to empty fields for next time login
   resetForm(form?: NgForm)
   {
-    
+
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
@@ -57,13 +58,13 @@ export class EducationComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "", 
+      eoy :  "",
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
       },
       location:{
         longitude:51.678418,
@@ -71,26 +72,26 @@ export class EducationComponent implements OnInit {
       },
       fees:0
     }
-    
+
   }
 
-  //update informtaion
+  // update education details using put
   onSubmit (form :NgForm)
   {
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
-         
+
    });
    this.snackBar.open("details updated", "OK", {
     duration: 2000,
   });
   }
 
-  //get particular doctor
+  //  subscribe to get doctors services
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
-    
+
     })
   }
 

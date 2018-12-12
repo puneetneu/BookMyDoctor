@@ -1,3 +1,4 @@
+import { ConfirmAppointmentComponent } from './Customer/confirm-appointment/confirm-appointment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,7 +22,7 @@ import { CustomerAppointmentsComponent } from './Customer/customer-appointments/
 import { AuthInterceptor } from './Homepage/auth-interceptor';
 import { ClinicComponent } from './Doctor/clinic/clinic.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
-import { MainComponent } from './Doctor/main/main.component';
+
 import { EducationComponent } from './Doctor/education/education.component';
 import { ClinictimeComponent } from './Doctor/clinictime/clinictime.component';
 import {MatSnackBarModule} from "@angular/material";
@@ -34,7 +35,6 @@ import { SendPrescriptionComponent } from './Doctor/send-prescription/send-presc
 import {AgmCoreModule } from '@agm/core';
 import {MatChipsModule} from '@angular/material/chips';
 import { SeeLocationComponent } from './Customer/see-location/see-location.component';
-import { ConfirmAppointmentComponent } from './Customer/confirm-appointment/confirm-appointment.component';
 
 
 @NgModule({
@@ -49,15 +49,14 @@ import { ConfirmAppointmentComponent } from './Customer/confirm-appointment/conf
     CustomerAppointmentsComponent,
     ClinicComponent,
     DemographicComponent,
-    MainComponent,
     EducationComponent,
     ClinictimeComponent,
     LocationComponent,
     AppointmentComponent,
     SendPrescriptionComponent,
     SeeLocationComponent,
-    ConfirmAppointmentComponent,
-    
+    ConfirmAppointmentComponent
+
   ],
   imports: [
     BrowserModule,

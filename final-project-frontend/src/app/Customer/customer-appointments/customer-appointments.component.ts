@@ -10,7 +10,6 @@ import {Doctor} from '../../Doctor/shared/doctor.model';
 import {SeeLocationComponent} from '../see-location/see-location.component';
 import * as jsPDF from 'jspdf';
 import { CustomerCreateData } from '../CustomerCreateData';
- 
 
 
 @Component({
@@ -28,11 +27,12 @@ export class CustomerAppointmentsComponent implements OnInit {
   customer:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(public dialog: MatDialog,private authService: AuthService ,private doctorService:DoctorService ,private customersevice:CustomerService) { }
-  
+
+  // on initialization get doctors data using his assigned id through doctors service
   ngOnInit() {
     this.userID=this.authService.getUserID();
     this.getappointments();
-    // defining slecteddoctor
+
     this.doctorService.selecteddoctor={
       _id:"",
       doctorID:"",
@@ -47,13 +47,13 @@ export class CustomerAppointmentsComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "",  
+      eoy :  "",
       clinicname: "",
       cliniccity:"",
       clinicaddress:"",
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
       },
       location:{
         longitude:51.678418,
@@ -63,7 +63,8 @@ export class CustomerAppointmentsComponent implements OnInit {
     }
   }
 
-// get all appointments
+
+  // subscribe to customer service to get appointments data from the db
   getappointments()
   {
     this.customersevice.getappoinments(this.userID).subscribe((res)=>{
@@ -71,28 +72,29 @@ export class CustomerAppointmentsComponent implements OnInit {
       console.log(this.appointments);
       this.dataSource=new MatTableDataSource<appointment>(this.appointments);
       this.dataSource.paginator = this.paginator;
-      
+
     });
   }
 
+  // setting filter properties for table to display appointments
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  //see location dioalog
+  // display dialog for confirmation of booking using customer id and doctor id
   openDialog(customerID:string , doctorID:string): void {
     const dialogRef = this.dialog.open(SeeLocationComponent, {
       data: {customerID: customerID, doctorID: doctorID}
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
     });
   }
-  
-  
-// open prescription pdf
+
+
+// pdf downloadable file for prescriptions
   openpdf(id:string){
     this.customersevice.getoneapp(id).subscribe((res)=>{
     this.app=res as appointment;
@@ -101,7 +103,7 @@ export class CustomerAppointmentsComponent implements OnInit {
     })
     this.doctorService.getcustomer(this.app.customerID).subscribe((res)=>{
     this.customer=res ;
-    
+
     const doc= new jsPDF();
     doc.setFontSize(23).setFontType("bold");
     doc.text('Clinic Name :'+this.doctorService.selecteddoctor.clinicname,60, 30);
@@ -121,11 +123,11 @@ export class CustomerAppointmentsComponent implements OnInit {
 
     })
     })
-    
+
   }
 
-  
-    
-     
-  
+
+
+
+
 }
