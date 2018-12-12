@@ -103,7 +103,7 @@ export class AuthService {
  // login validation
   login(email: string, password: string) {
     const authData: Auth = {email_id: email, password: password};
-    this.http.post<{token: string, type: string, userID: string, msg: string}>
+    return this.http.post<{token: string, type: string, userID: string, msg: string}>
     ('http://localhost:3000/login', authData).subscribe(response => {
           this.token = response.token;
           this.msg = response.msg;

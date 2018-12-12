@@ -13,16 +13,16 @@ router.post('/', (req, res, next) => {
         email: req.body.email_id
     }).then(user => {
         if (!user) {
-            return res.status(401).json({
-                msg: 'No Doctor Found'
+            return res.json({
+                msg: 'No User Found'
             });
         }
         fetchedUser = user;  
         return bcrypt.compare(req.body.password, user.password);     
     }).then(result => {
         if (!result) {
-            return res.status(401).json({
-                msg: err
+            return res.json({
+                msg: 'Invalid User'
             });
         }
         const token = jwt.sign({
@@ -34,11 +34,12 @@ router.post('/', (req, res, next) => {
         res.status(200).json({
             token: token,
             userID:fetchedUser._id,
-            type: fetchedUser.typeofUser
+            type: fetchedUser.typeofUser,
+            msg:''
         });
     }).catch(err => {
         return res.status(401).json({
-            msg: 'Authentication Failed'
+            msg: 'Invalid User'
         })
     });
 })
