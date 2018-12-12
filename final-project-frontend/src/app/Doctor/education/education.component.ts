@@ -67,7 +67,8 @@ export class EducationComponent implements OnInit {
       location:{
         longitude:51.678418,
         latitude:7.809007
-      }
+      },
+      fees:0
     }
     
   }

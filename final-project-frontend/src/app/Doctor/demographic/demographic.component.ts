@@ -66,7 +66,8 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
       location:{
         longitude:51.678418,
         latitude:7.809007
-      }
+      },
+      fees:0
     }
     
   }

@@ -8,7 +8,7 @@
           </mat-grid-tile>
           
 
-        <mat-grid-tile [rowspan]="5">
+        <mat-grid-tile [rowspan]="6">
                 <img src="assets/images/doctor1.jpg" alt="doctor image" width="500" height="500">
         </mat-grid-tile>
         <mat-grid-tile  >
@@ -40,7 +40,15 @@
         name="clinicaddress" #clinicaddress="ngModel"  [(ngModel)]="doctorService.selecteddoctor.clinicaddress"
          type="text" class="validate"/>
          </mat-form-field>
-      </mat-grid-tile>
+        </mat-grid-tile>
+
+         <mat-grid-tile >
+              <mat-form-field class="main">
+                   <input  matInput required id="fees" placeholder="fees"
+                    name="fees" #fees="ngModel" [(ngModel)]="doctorService.selecteddoctor.fees" type="number" class="validate"/>
+              </mat-form-field>   
+        </mat-grid-tile>
+        
       <mat-grid-tile >
         <button mat-flat-button color="primary" class="btn btn-custom right" type="submit" [disabled]="!clinicForm.valid"> Submit</button>
       </mat-grid-tile>
