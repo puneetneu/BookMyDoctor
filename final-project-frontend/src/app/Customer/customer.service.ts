@@ -82,9 +82,19 @@ export class CustomerService {
     return this.http.get('http://localhost:3000/appointment/time/' + time +'/date/' + date+'/doctor/' + doctor);
   }
 
-  postappointment(app:appointment)
+  postappointment(app:any)
   {
      return this.http.post('http://localhost:3000/appointment/',app);
+  }
+  
+  getappoinments(_id:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/cust'+`/${_id}`);
+  }
+
+  getoneapp(_id:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/one'+`/${_id}`);
   }
 }
 

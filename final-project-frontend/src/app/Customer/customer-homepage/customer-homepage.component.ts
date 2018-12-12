@@ -36,16 +36,16 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   userID: string;
   private authSub: Subscription;
   searchData: Specialization;
-
+  
   today = new Date() ;
-  currentDate = new Date().setDate(this.today.getDate())
+  currentDate = new Date().setDate(this.today.getDate()) 
   tdd = this.today.getDate()+1;
   tmm = this.today.getMonth()+1;
   tyyyy = this.today.getFullYear();
   stoday = this.tdd+'-'+this.tmm+'-'+this.tyyyy;
   currentDay= this.today.getDay() %7;
   currenttime:timeno;
-
+  
   secondDate = new Date().setDate(this.today.getDate() + 1);
   sd= new Date(this.secondDate);
   sedd = this.sd.getDate()+1;
@@ -54,7 +54,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   ssecond = this.sedd+'/'+this.semm+'/'+this.seyyyy;
   secondDay  = (this.today.getDay()+1)%7;
   secondtime : timeno;
-
+  
   thirdDate = new Date().setDate(this.today.getDate() + 2);
   td= new Date(this.secondDate);
   tedd = this.td.getDate()+1;
@@ -63,8 +63,8 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   tsecond = this.tedd+'/'+this.temm+'/'+this.teyyyy;
   thirdDay  =(this.today.getDay()+2)%7;
   thirdtime : timeno;
-
-
+  custname:string;
+ 
   options: Specialization[] = [
     {name: 'General Physician'},
     {name: 'Cardiologists'},
@@ -100,11 +100,16 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
       );
       this.timing= [
         {value:'No shedule',no:0},{value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
-        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8}
+        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8} 
       ];
+
+      // this.customerService.getCustomerData(this.userID).subscribe((res)=>
+      // {
+      //   this.custname=res.firstname;
+      // })
   }
   init() {
-
+    
     this.data.selecteddoctor= {
       _id: '',
       doctorID: '',
@@ -125,7 +130,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
       clinicaddress: '',
       timing: {
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
       },
       location:{
         longitude:51.678418,
@@ -155,46 +160,42 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
 
   seeavailiablity(slot:number,date:string, doctor:string):number{
     let x:appointment[];
+    let y=0;
     this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
        x= res as appointment[];
-       if(x.length===0) {console.log("no"); return 1;}
+       
+       if(x.length===0) {console.log("no"); } 
      })
-
      return 0;
   }
-
-  book(d_id:string , timeno:number , timevaue:string , date:string )
+  
+  book(d_id:string , timeno:number , timevaue:string , date:string , d_name:string)
   {
-    if(this.seeavailiablity(timeno,date,d_id)==0) { alert("already booked"); return;}
+    //if(this.seeavailiablity(timeno,date,d_id)==0) { alert("already booked"); return;}
 
     this.userID=this.authService.getUserID();
-      var name;
-      // this.customerService.getCustomerData(this.userID).subscribe((res)=>
-      // {
-
-      // })
-
-     this.app={
+     
+      
+     
+     var app1={
+       
       customerID:this.userID,
       doctorID:d_id,
       appointment_date:date,
       appointment_time:timeno,
       appointment_value:timevaue,
-      customer_name:"puneet"
+      customer_name:"puneet",
+      doctor_name:d_name,
      }
-
-     this.customerService.postappointment(this.app).subscribe((res)=>{
-
+     
+     this.customerService.postappointment(app1).subscribe((res)=>{
+        console.log(res);
      });
-  }
-
-  getDirection(){
-
   }
 
   see()
   {
     console.log("se");
   }
-
+ 
 }

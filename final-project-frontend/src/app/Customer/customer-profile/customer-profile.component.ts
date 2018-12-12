@@ -47,9 +47,25 @@ export class CustomerProfileComponent implements OnInit {
       voluntary: ['', Validators.required]
     });
     this.userID = this.authService.getUserID();
-
+    this.customerData$={
+      firstname:"",
+      lastname:"",
+      email:"",
+      typeofUser:"",
+      phonenumber:"",
+      address:"",
+      dob:"",
+      bloodGroup:"",
+      fmh:"",
+      maritalStatus:"",
+      voluntary:"",
+      gender:"",
+      ifm:"",
+    }
+    console.log(this.userID);
     this.customerService.getCustomerData(this.userID)
-    .subscribe(arg => this.customerData$ = arg);
+    .subscribe(arg => this.customerData$ = arg );
+    console.log(this.customerData$);
   }
 
   finalFormSubmit(stepper: NgForm) {
