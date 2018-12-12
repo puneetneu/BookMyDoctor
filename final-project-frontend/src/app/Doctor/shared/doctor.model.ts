@@ -1,3 +1,4 @@
+// define structure for doctors attributes
 export class Doctor {
    _id:string;
    doctorID: string;
@@ -12,7 +13,7 @@ export class Doctor {
    degree : string;
    college : string;
    eoc : string;
-   eoy : string ; 
+   eoy : string ;
    clinicname: string;
    cliniccity: string;
    clinicaddress: string;
@@ -37,11 +38,14 @@ export class Doctor {
 //    eoy : String ;
 // }
 
+// // define structure for location attributes
 export interface Location
 {
   longitude:number;
   latitude:number;
 }
+
+// define structure for doctorstime
 export interface Doctortime
 {
   mon:day;
@@ -52,16 +56,20 @@ export interface Doctortime
   sat:day;
   sun:day;
 }
+
+// define structure for days attributes
 export interface day
 {
   from:number; to:number;
 }
 
+// define structure for clinics attributes
 export interface clinic{
   clinicname:string;
   cliniccity:string;
   clinicaddress:string ;
 }
+// define structure for appointements attributes
  export interface appointment{
    customerID:string;
    doctorID:string;

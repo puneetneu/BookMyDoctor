@@ -32,23 +32,27 @@ export class AppointmentComponent implements OnInit {
     this.userID=this.authService.getUserID();
     this.getappointments();
     // this.add();
-    
-    
+
+
   }
+  // filtering patient appointments
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  // display dialog for confirmation of appointment
   openDialog(customerID:string , doctorID:string, appid:string): void {
     const dialogRef = this.dialog.open(SendPrescriptionComponent, {
       data: {customerID: customerID, doctorID: doctorID, appID:appid}
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
     });
   }
 
+  // subscribe to get appointments based on doctors id
   getappointments()
   {
     this.doctorService.getappoinments(this.userID).subscribe((res)=>{
@@ -56,11 +60,11 @@ export class AppointmentComponent implements OnInit {
       console.log(this.appointments);
       this.dataSource=new MatTableDataSource<appointment>(this.appointments);
       this.dataSource.paginator = this.paginator;
-      
+
     });
   }
- 
- 
+
+
 }
 
 export interface table {

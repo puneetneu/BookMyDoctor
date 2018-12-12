@@ -23,13 +23,14 @@ userID:string;
   constructor(private snackBar: MatSnackBar,private doctorService : DoctorService ,private authService: AuthService) {}
 
   ngOnInit() {
-   
-   this.getLocation();  
+
+   this.getLocation();
    this.initialise();
    this.userID=this.authService.getUserID();
    this.getdoctor();
   }
 
+  // gets current location
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
@@ -37,31 +38,33 @@ userID:string;
        alert("Geolocation is not supported by this browser.");
     }
   }
-  
+
+  // display marker on lat and long specified
   showPosition(position:Position) {
     document.getElementById("lati").innerHTML=position.coords.latitude.toString();
     document.getElementById("long").innerHTML=position.coords.longitude.toString();
-   
-  } 
 
+  }
+
+  // get lat and long of marker
   getpostion()
   {
     this.doctorService.selecteddoctor.location.latitude=parseFloat( document.getElementById("lati").innerHTML);
     this.doctorService.selecteddoctor.location.longitude=parseFloat( document.getElementById("long").innerHTML);
   }
 
- 
+ // update location using put
 get()
 {
   this.getpostion();
   this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
-         
+
   });
   this.snackBar.open("details updated", "OK", {
    duration: 2000,
  });
 }
- 
+ //  reset form to empty fields for next time login
 initialise()
 {
   this.doctorService.selecteddoctor={
@@ -78,13 +81,13 @@ initialise()
     degree : "",
     college :  "",
     eoc : "",
-    eoy :  "", 
+    eoy :  "",
     clinicname: "",
     cliniccity:"",
     clinicaddress:"",
     timing:{
       mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
     },
     location:{
       longitude:7.809007,
@@ -94,6 +97,7 @@ initialise()
   }
 }
 
+//  subscribe to get doctors services
 getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
@@ -103,11 +107,11 @@ getdoctor()
       longitude:7.809007,
       latitude:51.678418
     }
-    
+
     })
   }
-  
-  
+
+
 }
 
 

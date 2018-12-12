@@ -25,10 +25,10 @@ export class ClinictimeComponent implements OnInit {
   timing:time[];
   days:day[];
 
-  constructor(private snackBar: MatSnackBar,private doctorService : DoctorService ,private authService: AuthService) { 
+  constructor(private snackBar: MatSnackBar,private doctorService : DoctorService ,private authService: AuthService) {
     this.timing= [
       {value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
-        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8} 
+        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8}
       ];
     this.days=[{value:"mon"},{value:"tue"},{value:"wed"},{value:"thu"},{value:"fri"},
     {value:"sat"},{value:"sun"},];
@@ -37,9 +37,10 @@ export class ClinictimeComponent implements OnInit {
 
   }
 
+  //  reset form to empty fields for next time login
   resetForm(form?: NgForm)
   {
-    
+
     if(form) form.reset();
     this.doctorService.selecteddoctor={
       _id:"",
@@ -55,13 +56,13 @@ export class ClinictimeComponent implements OnInit {
       degree : "",
       college :  "",
       eoc : "",
-      eoy :  "", 
+      eoy :  "",
       clinicname: "",
       cliniccity:"",
-      clinicaddress:"", 
+      clinicaddress:"",
       timing:{
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
       },
       location:{
         longitude:51.678418,
@@ -76,20 +77,22 @@ export class ClinictimeComponent implements OnInit {
     this.userID=this.authService.getUserID();
     this.resetForm();
     this.getdoctor();
-    
+
   }
 
+  // update timing using put
   onSubmit (form :NgForm)
   {
-    
+
     this.doctorService.putDoctor(this.doctorService.selecteddoctor).subscribe((res)=>{
-       
+
    });
    this.snackBar.open("details updated", "OK", {
     duration: 2000,
   });
   }
 
+//  get doctors services
   getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
@@ -97,11 +100,11 @@ export class ClinictimeComponent implements OnInit {
     if(this.doctorService.selecteddoctor.timing==undefined)
     this.doctorService.selecteddoctor.timing={
       mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+      fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
     }
-    
+
     })
-    
+
   }
 
 
