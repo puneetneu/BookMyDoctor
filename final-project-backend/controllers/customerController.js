@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 var Customer = require('../model/customer');
 var checkAuth = require('../middleware/check-auth');
 
+//get all customer
 router.get('/' , (req, res)=>{
     Customer.find((err,docs) => {
         if(!err) {res.send(docs);}
@@ -13,6 +14,7 @@ router.get('/' , (req, res)=>{
     });
 });
 
+//get customer through id
 router.get('/:id',(req, res, next) => {
     Customer.findOne({
         customerID: req.params.id

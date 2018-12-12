@@ -30,6 +30,7 @@ userID:string;
    this.getdoctor();
   }
 
+  // get location of doctor
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
@@ -38,19 +39,21 @@ userID:string;
     }
   }
   
+  //update map
   showPosition(position:Position) {
     document.getElementById("lati").innerHTML=position.coords.latitude.toString();
     document.getElementById("long").innerHTML=position.coords.longitude.toString();
    
   } 
 
+  //get current position
   getpostion()
   {
     this.doctorService.selecteddoctor.location.latitude=parseFloat( document.getElementById("lati").innerHTML);
     this.doctorService.selecteddoctor.location.longitude=parseFloat( document.getElementById("long").innerHTML);
   }
 
- 
+ // get location of particular doctor
 get()
 {
   this.getpostion();
@@ -62,6 +65,7 @@ get()
  });
 }
  
+//defining selected doctor
 initialise()
 {
   this.doctorService.selecteddoctor={
@@ -94,6 +98,7 @@ initialise()
   }
 }
 
+// get selected doctor
 getdoctor()
   {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{

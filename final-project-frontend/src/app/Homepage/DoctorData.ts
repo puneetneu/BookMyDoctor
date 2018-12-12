@@ -1,3 +1,5 @@
+
+// doctor interface
 export interface DoctorData {
   doctorID: string;
   firstname: string;

@@ -15,6 +15,7 @@ export class DoctorRegistrationComponent implements OnInit {
   labelPosition = 'doctor';
   isSuccess = false;
   constructor(public userCreate: AuthService) { }
+  //create doctor
   onCreate(createForm: NgForm) {
     if (createForm.invalid) {
       return;

@@ -28,9 +28,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.userID = this.authService.getUserID();
     });
   }
+  
+  //logout 
   onLogout() {
     this.authService.logout();
   }
+
+  //destroy
   ngOnDestroy() {
     this.authSub.unsubscribe();
     this.doctorauth.unsubscribe();

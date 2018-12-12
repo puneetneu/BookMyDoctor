@@ -41,7 +41,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   animal: string;
   private authSub: Subscription;
   searchData: Specialization;
-  
+  //today date
   today = new Date() ;
   currentDate = new Date().setDate(this.today.getDate()) 
   tdd = this.today.getDate();
@@ -50,7 +50,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   stoday = this.tdd+'-'+this.tmm+'-'+this.tyyyy;
   currentDay= this.today.getDay() %7;
   currenttime:timeno;
-  
+  // next day date
   secondDate = new Date().setDate(this.today.getDate() + 1);
   sd= new Date(this.secondDate);
   sedd = this.sd.getDate();
@@ -59,7 +59,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   ssecond = this.sedd+'-'+this.semm+'-'+this.seyyyy;
   secondDay  = (this.today.getDay()+1)%7;
   secondtime : timeno;
-  
+  // third day date
   thirdDate = new Date().setDate(this.today.getDate() + 2);
   td= new Date(this.thirdDate);
   tedd = this.td.getDate();
@@ -70,6 +70,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   thirdtime : timeno;
   custname:string;
  
+  //specialization
   options: Specialization[] = [
     {name: 'General Physician'},
     {name: 'Cardiologists'},
@@ -112,7 +113,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
       
   }
   init() {
-    
+    //defining selected doctor
     this.data.selecteddoctor= {
       _id: '',
       doctorID: '',
@@ -152,6 +153,8 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
 
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  //get doctor
   getDoctorSearch() {
     this.customerService.getDoctor(this.searchData.name).subscribe(response => {
       this.data.doctors = response as Doctor[];
@@ -162,6 +165,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
     this.authSub.unsubscribe();
   }
 
+  //check avaliablity
   seeavailiablity(slot:number,date:string, doctor:string):void{
     let x:appointment[];
     let y=0;
@@ -173,6 +177,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
      
   }
   
+  //book appointment
   book(d_id:string , timeno:number , timevaue:string , date:string , d_name:string)
   {   
     this.userID=this.authService.getUserID();
@@ -195,7 +200,8 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   {
     console.log("se");
   }
-
+ 
+  // confirm appointment
   openDialog(d_id:string , timeno:number , timevaue:string , date:string , d_name:string): void {
     
     if(timeno==0) return;

@@ -32,7 +32,7 @@ export class CustomerAppointmentsComponent implements OnInit {
   ngOnInit() {
     this.userID=this.authService.getUserID();
     this.getappointments();
-
+    // defining slecteddoctor
     this.doctorService.selecteddoctor={
       _id:"",
       doctorID:"",
@@ -63,7 +63,7 @@ export class CustomerAppointmentsComponent implements OnInit {
     }
   }
 
-
+// get all appointments
   getappointments()
   {
     this.customersevice.getappoinments(this.userID).subscribe((res)=>{
@@ -79,6 +79,7 @@ export class CustomerAppointmentsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  //see location dioalog
   openDialog(customerID:string , doctorID:string): void {
     const dialogRef = this.dialog.open(SeeLocationComponent, {
       data: {customerID: customerID, doctorID: doctorID}
@@ -91,7 +92,7 @@ export class CustomerAppointmentsComponent implements OnInit {
   }
   
   
-
+// open prescription pdf
   openpdf(id:string){
     this.customersevice.getoneapp(id).subscribe((res)=>{
     this.app=res as appointment;

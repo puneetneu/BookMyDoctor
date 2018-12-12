@@ -10,8 +10,8 @@ var ObjectId = require('mongoose').Types.ObjectId;
 var nodemailer = require('nodemailer');
 
 router.get('/:time/dname/:dname/date/:date',(req,res)=>{
-       
-    
+ 
+// send email  
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {

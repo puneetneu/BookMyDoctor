@@ -44,6 +44,7 @@ export class SendPrescriptionComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  //defining selected doctor
   intialisedoctor()
   {
     this.app={
@@ -97,6 +98,7 @@ export class SendPrescriptionComponent implements OnInit {
     
     
   }
+  //get selected doctor
   getdoctor()
   {
     this.doctorService.getDoctor(this.data.doctorID).subscribe((res)=>{
@@ -106,6 +108,7 @@ export class SendPrescriptionComponent implements OnInit {
     })
   }
 
+  //get particular customer
   getcustomer()
   {
     this.doctorService.getcustomer(this.data.customerID).subscribe((res)=>{
@@ -118,6 +121,7 @@ export class SendPrescriptionComponent implements OnInit {
     })
   }
 
+  //update appointment
   updateapp()
   {
     this.doctorService.updateapp(this.app).subscribe((res)=>{
@@ -125,6 +129,7 @@ export class SendPrescriptionComponent implements OnInit {
     })
   }
 
+  //get appointment
   getapp()
   {
     this.doctorService.getoneapp(this.data.appID).subscribe((res)=>{
