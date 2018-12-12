@@ -22,7 +22,7 @@ import { CustomerAppointmentsComponent } from './Customer/customer-appointments/
 import { AuthInterceptor } from './Homepage/auth-interceptor';
 import { ClinicComponent } from './Doctor/clinic/clinic.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
-import { MainComponent } from './Doctor/main/main.component';
+
 import { EducationComponent } from './Doctor/education/education.component';
 import { ClinictimeComponent } from './Doctor/clinictime/clinictime.component';
 import {MatSnackBarModule} from "@angular/material";
@@ -50,7 +50,6 @@ import { SeeLocationComponent } from './Customer/see-location/see-location.compo
     CustomerAppointmentsComponent,
     ClinicComponent,
     DemographicComponent,
-    MainComponent,
     EducationComponent,
     ClinictimeComponent,
     LocationComponent,
