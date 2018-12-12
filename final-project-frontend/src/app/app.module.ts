@@ -1,4 +1,3 @@
-import { NavigationComponent } from './Homepage/navigation/navigation.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -34,7 +33,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SendPrescriptionComponent } from './Doctor/send-prescription/send-prescription.component';
 import {AgmCoreModule } from '@agm/core';
 import {MatChipsModule} from '@angular/material/chips';
-import { AgmMarker } from '@agm/core';
+import { SeeLocationComponent } from './Customer/see-location/see-location.component';
+
 
 @NgModule({
   declarations: [
@@ -54,8 +54,8 @@ import { AgmMarker } from '@agm/core';
     LocationComponent,
     AppointmentComponent,
     SendPrescriptionComponent,
-    NavigationComponent,
-    AgmMarker,
+    SeeLocationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -78,7 +78,6 @@ import { AgmMarker } from '@agm/core';
     MatPaginatorModule,
     MatDialogModule,
     MatChipsModule,
-    AgmMarker,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyBasa0YYrtweVdF0ZmmxEwTvKJ-TITybTo'
     })
@@ -86,6 +85,6 @@ import { AgmMarker } from '@agm/core';
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent],
-  entryComponents:[SendPrescriptionComponent]
+  entryComponents:[SendPrescriptionComponent,SeeLocationComponent]
 })
 export class AppModule { }
