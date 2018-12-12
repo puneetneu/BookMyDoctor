@@ -40,7 +40,9 @@ export class LoginCreateComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    this.userCreate.login(loginForm.value.email, loginForm.value.password);
+    this.userCreate.login(loginForm.value.email, loginForm.value.password).subscribe(response => {
+      console.log(response);
+    });
     this.isLoading = false;
     this.isNotAuthenticated = false;
     this.userNotFound = false;
