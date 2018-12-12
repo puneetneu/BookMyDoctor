@@ -13,7 +13,7 @@ export class DoctorRegistrationComponent implements OnInit {
 
   isLoading = false;
   labelPosition = 'doctor';
-
+  isSuccess = false;
   constructor(public userCreate: AuthService) { }
   onCreate(createForm: NgForm) {
     if (createForm.invalid) {
@@ -27,8 +27,15 @@ export class DoctorRegistrationComponent implements OnInit {
       createForm.value.password,
       this.labelPosition,
       createForm.value.createTel);
-      createForm.reset();
+      createForm.resetForm();
       this.isLoading = false;
+      this.isSuccess = true;
+  }
+  resetCreateForm(createForm: NgForm) {
+    createForm.resetForm();
+  }
+  closeMessage() {
+    this.isSuccess = false;
   }
   ngOnInit() {
   }

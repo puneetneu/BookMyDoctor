@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CustomerCreateData } from './CustomerCreateData';
 import { HttpClient } from '@angular/common/http';
+import {appointment} from'./appointment';
 import {map} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,7 @@ export class CustomerService {
     gender: string,
     ifm: string
   ) {
-    const newCustomer: CustomerCreateData = {
+    const customer: CustomerCreateData = {
       firstname: firstName,
       lastname: lastName,
       email: emailID,
@@ -44,8 +46,9 @@ export class CustomerService {
       ifm: ifm
     };
     this.http
-      .put('http://localhost:3000/customer/' + customerid, newCustomer)
+      .put('http://localhost:3000/customer/' + customerid, customer)
       .subscribe(response => {
+        console.log('success');
         console.log(response);
       });
   }
@@ -69,4 +72,36 @@ export class CustomerService {
           };
     }));
   }
+  getDoctor(speciality: string) {
+     return this.http.get('http://localhost:3000/doctor/sp/' + speciality);
+  }
+
+
+  getappointment(time:number, date:string , doctor:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/time/' + time +'/date/' + date+'/doctor/' + doctor);
+  }
+
+  postappointment(app:any)
+  {
+     return this.http.post('http://localhost:3000/appointment/',app);
+  }
+  
+  getappoinments(_id:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/cust'+`/${_id}`);
+  }
+
+  getoneapp(_id:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/one'+`/${_id}`);
+  }
+
+  mail(time:string, dname:string , date:string)
+  {
+    return this.http.get('http://localhost:3000/email/'+ time + '/dname/' + dname + '/date/'+date);
+  }
+
+
 }
+

@@ -1,58 +1,86 @@
-<nav class="white"></nav>
-<nav class="indigo lighten-5">Profile</nav>
 <div class="contain">
-  <form class="col s12" #eduForm="ngForm" (ngSubmit)="onSubmit(eduForm)">
-      <input type="hidden" required name="_id" #_id="ngModel" [(ngModel)]="doctorService.selecteddoctor._id">
-      <input type="hidden"  name="firstname" #firstname="ngModel" [(ngModel)]="doctorService.selecteddoctor.firstname">
-      <input type="hidden"  name="lastname" #lastname="ngModel" [(ngModel)]="doctorService.selecteddoctor.lastname">
-      <input type="hidden"  name="speciality" #speciality="ngModel" [(ngModel)]="doctorService.selecteddoctor.speciality">
-      <input type="hidden"  name="gender" #gender="ngModel" [(ngModel)]="doctorService.selecteddoctor.gender">
-      <input type="hidden"  name="clinicname" #degree="ngModel" [(ngModel)]="doctorService.selecteddoctor.clinicname">
-      <input type="hidden"  name="cliniccity" #college="ngModel" [(ngModel)]="doctorService.selecteddoctor.cliniccity">
-      <input type="hidden"  name="clinicaddress" #eoc="ngModel" [(ngModel)]="doctorService.selecteddoctor.clinicaddress">
-      <input type="hidden" name="image" #image="ngModel" [(ngModel)]="doctorService.selecteddoctor.image">
-       
-      <div class="row">
-          <mat-form-field class="col s5">
-              <mat-select  required 
-              placeholder="Degree"
-              name="degree" #degree="ngModel"  [(ngModel)]="doctorService.selecteddoctor.degree"
-              >
-                <mat-option *ngFor="let degree of degrees" [value]="degree.value">
-                  {{degree.value}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> 
-      </div>
-      <div class="row">
-          <div class="input-field col s5">
-        <input  required id="College"
-        name="college" #college="ngModel"  [(ngModel)]="doctorService.selecteddoctor.college"
-         type="text" class="validate"/>
-        <label for="College">College</label>
-        </div>
-      </div>
-      <div class="row">
-          <div class="input-field col s5">
-          <input required id="EOC"
-          name="eoc" #eoc="ngModel"  [(ngModel)]="doctorService.selecteddoctor.eoc"
-           type="number" class="validate"/>
-          <label for="EOC">Year of Completion</label>
-          </div>
-      </div>
-      <div class="row">
-          <div class="input-field col s5">
-            <input required id="EOY"
-            name="eoy" #eoy="ngModel"  [(ngModel)]="doctorService.selecteddoctor.eoy"
-             type="number" class="validate"/>
-            <label for="EOY">Year of experience</label>
-            </div>
-      </div>
-      <div class="row">
-          <div class="input-field col s5">
-        <button class="btn btn-custom right" type="submit" [disabled]="!eduForm.valid"> Submit</button>
-      </div>
-    </div>
-    
+  <form #eduForm="ngForm" (ngSubmit)="onSubmit(eduForm)">
+    <mat-grid-list cols="2" rowHeight="80px">
+        <mat-grid-tile>
+            <label class="main head"> Education Details </label>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="6">
+            <img src="assets/images/doctor3.jpg" alt="doctor image" width="500" height="400">
+        </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="example-container">
+          <mat-select
+            required
+            placeholder="Degree"
+            name="degree"
+            #degree="ngModel"
+            [(ngModel)]="doctorService.selecteddoctor.degree"
+          >
+            <mat-option *ngFor="let degree of degrees" [value]="degree.value">
+              {{ degree.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      
+      <mat-grid-tile>
+        <mat-form-field class="example-container">
+          <input
+            matInput
+            required
+            id="College"
+            placeholder="college"
+            name="college"
+            #college="ngModel"
+            [(ngModel)]="doctorService.selecteddoctor.college"
+            type="text"
+            class="validate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="example-container">
+          <input
+            matInput
+            required
+            id="EOC"
+            placeholder="Year of complete"
+            name="eoc"
+            #eoc="ngModel"
+            [(ngModel)]="doctorService.selecteddoctor.eoc"
+            type="number"
+            class="validate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="example-container">
+          <input
+            matInput
+            required
+            id="EOY"
+            placeholder="Year of experience"
+            name="eoy"
+            #eoy="ngModel"
+            [(ngModel)]="doctorService.selecteddoctor.eoy"
+            type="number"
+            class="validate"
+          />
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile class="example-container">
+        <button mat-flat-button color="primary"
+          class="btn btn-custom right"
+          type="submit"
+          [disabled]="!eduForm.valid"
+        >
+          Submit
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
   </form>
 </div>

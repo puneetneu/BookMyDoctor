@@ -20,9 +20,9 @@ export class CustomerProfileComponent implements OnInit {
   customerData$: CustomerCreateData;
   userID: string;
   maritalStatus: MaritalStatus[] = [
-    {value: 'opt1', viewValue: 'Single'},
-    {value: 'opt2', viewValue: 'Married'},
-    {value: 'opt3', viewValue: 'Divorced/Separated'}
+    {value: 'single', viewValue: 'Single'},
+    {value: 'married', viewValue: 'Married'},
+    {value: 'divorced', viewValue: 'Divorced/Separated'}
   ];
   selected: string;
   isLinear = false;
@@ -47,17 +47,25 @@ export class CustomerProfileComponent implements OnInit {
       voluntary: ['', Validators.required]
     });
     this.userID = this.authService.getUserID();
-
+    this.customerData$={
+      firstname:"",
+      lastname:"",
+      email:"",
+      typeofUser:"",
+      phonenumber:"",
+      address:"",
+      dob:"",
+      bloodGroup:"",
+      fmh:"",
+      maritalStatus:"",
+      voluntary:"",
+      gender:"",
+      ifm:"",
+    }
+    console.log(this.userID);
     this.customerService.getCustomerData(this.userID)
-    .subscribe(arg => this.customerData$ = arg);
-  }
-
-  onFormSubmit(firstForm: NgForm) {
-
-  }
-
-  secondFormSubmit(secondForm: NgForm) {
-
+    .subscribe(arg => this.customerData$ = arg );
+    console.log(this.customerData$);
   }
 
   finalFormSubmit(stepper: NgForm) {
@@ -80,4 +88,6 @@ export class CustomerProfileComponent implements OnInit {
       this.customerData$.gender,
       this.customerData$.ifm);
   }
+
+
 }

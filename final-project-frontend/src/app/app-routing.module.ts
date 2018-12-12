@@ -10,6 +10,10 @@ import { MainComponent } from './Doctor/main/main.component';
 import { EducationComponent } from './Doctor/education/education.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
 import { ClinicComponent } from './Doctor/clinic/clinic.component';
+import { ClinictimeComponent } from './Doctor/clinictime/clinictime.component';
+import {LocationComponent} from './Doctor/location/location.component'
+import {AppointmentComponent} from './Doctor/appointment/appointment.component';
+
 
 const routes: Routes = [
 { path: '',  component: LoginCreateComponent },
@@ -38,7 +42,7 @@ const routes: Routes = [
 },
 {
   path: 'doctorHome',
-  component: MainComponent,
+  component: AppointmentComponent,
   canActivate : [CanActivateGuard]
 },
 {
@@ -55,7 +59,24 @@ const routes: Routes = [
   path: 'doctorclinic',
   component: ClinicComponent,
   canActivate : [CanActivateGuard]
-}];
+},
+{
+  path: 'doctortime',
+  component: ClinictimeComponent,
+  canActivate : [CanActivateGuard]
+},
+{
+  path: 'doctorlocation',
+  component: LocationComponent,
+  canActivate : [CanActivateGuard]
+},
+{
+  path: 'doctorappointment',
+  component: AppointmentComponent,
+  canActivate : [CanActivateGuard]
+}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

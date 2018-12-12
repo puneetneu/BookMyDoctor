@@ -23,6 +23,19 @@ import { ClinicComponent } from './Doctor/clinic/clinic.component';
 import { DemographicComponent } from './Doctor/demographic/demographic.component';
 import { MainComponent } from './Doctor/main/main.component';
 import { EducationComponent } from './Doctor/education/education.component';
+import { ClinictimeComponent } from './Doctor/clinictime/clinictime.component';
+import {MatSnackBarModule} from "@angular/material";
+import { LocationComponent } from './Doctor/location/location.component';
+import { AppointmentComponent } from './Doctor/appointment/appointment.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SendPrescriptionComponent } from './Doctor/send-prescription/send-prescription.component';
+import {AgmCoreModule } from '@agm/core';
+import {MatChipsModule} from '@angular/material/chips';
+import { SeeLocationComponent } from './Customer/see-location/see-location.component';
+import { ConfirmAppointmentComponent } from './Customer/confirm-appointment/confirm-appointment.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +50,14 @@ import { EducationComponent } from './Doctor/education/education.component';
     ClinicComponent,
     DemographicComponent,
     MainComponent,
-    EducationComponent
+    EducationComponent,
+    ClinictimeComponent,
+    LocationComponent,
+    AppointmentComponent,
+    SendPrescriptionComponent,
+    SeeLocationComponent,
+    ConfirmAppointmentComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -54,9 +74,19 @@ import { EducationComponent } from './Doctor/education/education.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatChipsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyBasa0YYrtweVdF0ZmmxEwTvKJ-TITybTo'
+    })
+
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[SendPrescriptionComponent,SeeLocationComponent,ConfirmAppointmentComponent]
 })
 export class AppModule { }

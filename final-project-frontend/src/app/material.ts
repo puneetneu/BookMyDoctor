@@ -15,6 +15,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,
@@ -47,7 +49,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule
+    
   ]
 })
 export class MaterialModule {}
