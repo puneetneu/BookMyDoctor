@@ -24,7 +24,12 @@ const AppointmentSchema=mongoose.Schema({
   ,customer_name:{
     type:String,
     required:true
-  }
+  },
+  doctor_name:{
+    type:String,
+    required:true
+  },
+  prescription:String
 });
 
 module.exports=mongoose.model('Appointment',AppointmentSchema);

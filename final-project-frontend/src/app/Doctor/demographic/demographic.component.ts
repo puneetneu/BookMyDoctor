@@ -66,7 +66,8 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
       location:{
         longitude:51.678418,
         latitude:7.809007
-      }
+      },
+      fees:0
     }
     
   }
@@ -127,11 +128,15 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
 
   uploadimage()
   {
-    
+  
     this.fd.append('file', this.selectedFile,  this.random);
+    
     this.http.post(this.baseURL, this.fd, {responseType: 'text'})
     .subscribe( (res) => {
     });
+
+    
+  
   }
 
   createImageFromBlob(image: Blob) {
@@ -163,5 +168,7 @@ export class DemographicComponent implements OnInit ,AfterViewChecked {
    });
  }
 }
+
+  
  
 }

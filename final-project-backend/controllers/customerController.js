@@ -22,7 +22,9 @@ router.get('/:id',(req, res, next) => {
                 msg: err
             });
         } else {
-            res.send(customer);
+            res.json({
+                customer: customer
+            })
         }
     })
 });
@@ -81,7 +83,7 @@ router.post("/images", (req, res) => {
     }
 
 });
-router.put('/id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
     var customer = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -100,7 +102,7 @@ router.put('/id', (req, res, next) => {
     Customer.updateOne({
         customerID: req.params.id
     }, {
-        $set: {customer}
+        $set: customer
     }, {
         new: true
     }, (err, doc) => {
@@ -110,4 +112,6 @@ router.put('/id', (req, res, next) => {
         }
     });
 });
+
+
 module.exports = router;

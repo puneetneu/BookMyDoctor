@@ -89,7 +89,8 @@ initialise()
     location:{
       longitude:7.809007,
       latitude:51.678418
-    }
+    },
+    fees:0
   }
 }
 

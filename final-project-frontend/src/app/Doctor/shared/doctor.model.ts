@@ -18,6 +18,7 @@ export class Doctor {
    clinicaddress: string;
    timing:Doctortime;
    location:Location;
+   fees:number;
 
 }
 

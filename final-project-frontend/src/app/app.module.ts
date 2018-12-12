@@ -33,6 +33,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { SendPrescriptionComponent } from './Doctor/send-prescription/send-prescription.component';
 import {AgmCoreModule } from '@agm/core';
 import {MatChipsModule} from '@angular/material/chips';
+import { SeeLocationComponent } from './Customer/see-location/see-location.component';
+import { ConfirmAppointmentComponent } from './Customer/confirm-appointment/confirm-appointment.component';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +55,8 @@ import {MatChipsModule} from '@angular/material/chips';
     LocationComponent,
     AppointmentComponent,
     SendPrescriptionComponent,
+    SeeLocationComponent,
+    ConfirmAppointmentComponent,
     
   ],
   imports: [
@@ -82,6 +87,6 @@ import {MatChipsModule} from '@angular/material/chips';
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent],
-  entryComponents:[SendPrescriptionComponent]
+  entryComponents:[SendPrescriptionComponent,SeeLocationComponent,ConfirmAppointmentComponent]
 })
 export class AppModule { }

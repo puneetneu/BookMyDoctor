@@ -11,6 +11,10 @@ import { Doctor } from '../../Doctor/shared/doctor.model';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import {appointment} from '../appointment';
 import { CustomerData } from 'src/app/Homepage/CustomerData';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {ConfirmAppointmentComponent} from '../confirm-appointment/confirm-appointment.component';
+import { Email } from '@coolgk/email';
+
 export interface time {
   value: string;
   no:number;
@@ -34,12 +38,13 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   myControl = new FormControl();
   userisAuthenticated = false;
   userID: string;
+  animal: string;
   private authSub: Subscription;
   searchData: Specialization;
   
   today = new Date() ;
   currentDate = new Date().setDate(this.today.getDate()) 
-  tdd = this.today.getDate()+1;
+  tdd = this.today.getDate();
   tmm = this.today.getMonth()+1;
   tyyyy = this.today.getFullYear();
   stoday = this.tdd+'-'+this.tmm+'-'+this.tyyyy;
@@ -48,22 +53,22 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   
   secondDate = new Date().setDate(this.today.getDate() + 1);
   sd= new Date(this.secondDate);
-  sedd = this.sd.getDate()+1;
+  sedd = this.sd.getDate();
   semm = this.sd.getMonth()+1;
   seyyyy = this.sd.getFullYear();
-  ssecond = this.sedd+'/'+this.semm+'/'+this.seyyyy;
+  ssecond = this.sedd+'-'+this.semm+'-'+this.seyyyy;
   secondDay  = (this.today.getDay()+1)%7;
   secondtime : timeno;
   
   thirdDate = new Date().setDate(this.today.getDate() + 2);
-  td= new Date(this.secondDate);
-  tedd = this.td.getDate()+1;
+  td= new Date(this.thirdDate);
+  tedd = this.td.getDate();
   temm = this.td.getMonth()+1;
   teyyyy = this.td.getFullYear();
-  tsecond = this.tedd+'/'+this.temm+'/'+this.teyyyy;
+  sthird = this.tedd+'-'+this.temm+'-'+this.teyyyy;
   thirdDay  =(this.today.getDay()+2)%7;
   thirdtime : timeno;
-  
+  custname:string;
  
   options: Specialization[] = [
     {name: 'General Physician'},
@@ -72,9 +77,10 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   ];
   filteredOptions: Observable<Specialization[]>;
 
-  constructor(private authService: AuthService, private customerService: CustomerService, private data: DoctorService) { }
+  constructor(private authService: AuthService, private customerService: CustomerService, private data: DoctorService,public dialog: MatDialog) { }
 
   ngOnInit() {
+    
     this.currenttime={
       from:0,
       to:0
@@ -102,6 +108,8 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
         {value:'No shedule',no:0},{value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
         {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8} 
       ];
+
+      
   }
   init() {
     
@@ -130,7 +138,8 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
       location:{
         longitude:51.678418,
         latitude:7.809007
-      }
+      },
+      fees:0
     };
     console.log(this.currentDate);
   }
@@ -153,38 +162,32 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
     this.authSub.unsubscribe();
   }
 
-  seeavailiablity(slot:number,date:string, doctor:string):number{
+  seeavailiablity(slot:number,date:string, doctor:string):void{
     let x:appointment[];
+    let y=0;
     this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
        x= res as appointment[];
-       if(x.length===0) {console.log("no"); return 1;} 
-     })
-   
-     return 0;
+       
+     });
+    
+     
   }
   
-  book(d_id:string , timeno:number , timevaue:string , date:string )
-  {
-    if(this.seeavailiablity(timeno,date,d_id)==0) { alert("already booked"); return;}
-
+  book(d_id:string , timeno:number , timevaue:string , date:string , d_name:string)
+  {   
     this.userID=this.authService.getUserID();
-      var name;
-      // this.customerService.getCustomerData(this.userID).subscribe((res)=>
-      // {
-        
-      // })
-     
-     this.app={
+     var app1={ 
       customerID:this.userID,
       doctorID:d_id,
       appointment_date:date,
       appointment_time:timeno,
       appointment_value:timevaue,
-      customer_name:"puneet"
+      customer_name:"puneet",
+      doctor_name:d_name,
      }
      
-     this.customerService.postappointment(this.app).subscribe((res)=>{
-        
+     this.customerService.postappointment(app1).subscribe((res)=>{
+        console.log(res);
      });
   }
 
@@ -192,5 +195,34 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   {
     console.log("se");
   }
+
+  openDialog(d_id:string , timeno:number , timevaue:string , date:string , d_name:string): void {
+    
+    if(timeno==0) return;
+    let x:appointment[];
+    this.customerService.getappointment(timeno,date,d_id).subscribe((res)=>{
+       x= res as appointment[];
+       if(x.length==0){
+        const dialogRef = this.dialog.open(ConfirmAppointmentComponent, {
+          data: {customerID: 0, doctorID: 1}
+         });
+         dialogRef.afterClosed().subscribe(result => {
+           if(result==0)
+           {
+             this.book(d_id, timeno , timevaue , date, d_name);
+             
+             this.customerService.mail(timevaue,d_name,date).subscribe((res)=>{
+             
+            });
+           }
+           
+         });      
+         
+
+       } else {alert("no more availiable");}
+     }); 
+  }
+
+  
  
 }

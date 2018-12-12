@@ -42,7 +42,7 @@ const routes: Routes = [
 },
 {
   path: 'doctorHome',
-  component: MainComponent,
+  component: AppointmentComponent,
   canActivate : [CanActivateGuard]
 },
 {

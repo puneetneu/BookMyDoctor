@@ -42,17 +42,17 @@
       </button>
       <button mat-menu-item *ngIf="!userisAuthenticated && doctorisAuthenticated">
           <a [routerLink]="[ '/doctortime']" routerLinkActive="active">
-            <mat-icon>school</mat-icon> Timing
+            <mat-icon>access_time</mat-icon> Timing
           </a>
         </button>
         <button mat-menu-item *ngIf="!userisAuthenticated && doctorisAuthenticated">
             <a [routerLink]="[ '/doctorappointment']" routerLinkActive="active">
-              <mat-icon>school</mat-icon> Appointment
+              <mat-icon>assessment</mat-icon> Appointment
             </a>
           </button>
           <button mat-menu-item *ngIf="!userisAuthenticated && doctorisAuthenticated">
               <a [routerLink]="[ '/doctorlocation']" routerLinkActive="active">
-                <mat-icon>school</mat-icon> Location
+                <mat-icon>add_location</mat-icon> Location
               </a>
             </button>
       <button mat-menu-item *ngIf="userisAuthenticated || doctorisAuthenticated" >

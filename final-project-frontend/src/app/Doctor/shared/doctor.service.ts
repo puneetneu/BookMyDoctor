@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Doctor } from './doctor.model';
+import {appointment} from '../../Customer/appointment';
 
 
 @Injectable({
@@ -42,4 +43,13 @@ export class DoctorService {
     return this.http.get(this.custURL+ `/${_id}`);
   }
   
+  updateapp(app:appointment)
+  {
+    return this.http.put(this.appURL+`/${app._id}` ,app);
+  }
+
+  getoneapp(_id:string)
+  {
+    return this.http.get('http://localhost:3000/appointment/one'+`/${_id}`);
+  }
 }
