@@ -1,3 +1,4 @@
+import { ConfirmAppointmentComponent } from './Customer/confirm-appointment/confirm-appointment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,6 +37,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { SeeLocationComponent } from './Customer/see-location/see-location.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { SeeLocationComponent } from './Customer/see-location/see-location.compo
     AppointmentComponent,
     SendPrescriptionComponent,
     SeeLocationComponent,
-    
+    ConfirmAppointmentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,6 @@ import { SeeLocationComponent } from './Customer/see-location/see-location.compo
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent],
-  entryComponents:[SendPrescriptionComponent,SeeLocationComponent]
+  entryComponents:[SendPrescriptionComponent,SeeLocationComponent,ConfirmAppointmentComponent]
 })
 export class AppModule { }

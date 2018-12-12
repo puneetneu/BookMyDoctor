@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {appointment} from'./appointment';
 import {map} from 'rxjs/operators';
 
-
+// services for customers
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,7 @@ export class CustomerService {
   private customerData: CustomerCreateData;
 
   constructor(private http: HttpClient) { }
-
+// service for creating new customer
   createCustomerProfile(
     customerid: string,
     firstName: string,
@@ -52,6 +52,8 @@ export class CustomerService {
         console.log(response);
       });
   }
+
+  // service to get the customer details
   getCustomerData(customerid: string) {
       return this.http.get<{customer: CustomerCreateData}>('http://localhost:3000/customer/' + customerid)
       .pipe(map((result) => {
@@ -72,26 +74,31 @@ export class CustomerService {
           };
     }));
   }
+
+  // service to get doctors speciality
   getDoctor(speciality: string) {
      return this.http.get('http://localhost:3000/doctor/sp/' + speciality);
   }
 
-
+// service to get appointments booked date and doctor
   getappointment(time:number, date:string , doctor:string)
   {
     return this.http.get('http://localhost:3000/appointment/time/' + time +'/date/' + date+'/doctor/' + doctor);
   }
 
+  // service to create appointments
   postappointment(app:any)
   {
      return this.http.post('http://localhost:3000/appointment/',app);
   }
-  
+
+  // service to get customer id who booked appointment
   getappoinments(_id:string)
   {
     return this.http.get('http://localhost:3000/appointment/cust'+`/${_id}`);
   }
 
+  // service to get appointments by id
   getoneapp(_id:string)
   {
     return this.http.get('http://localhost:3000/appointment/one'+`/${_id}`);

@@ -1,3 +1,4 @@
+// define structure for appointments
 export interface appointment{
     _id:string;
     customerID:string;

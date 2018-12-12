@@ -20,10 +20,6 @@ const AppointmentSchema=mongoose.Schema({
   appointment_value:{
     type:String,
     required:true
-  }
-  ,customer_name:{
-    type:String,
-    required:true
   },
   doctor_name:{
     type:String,

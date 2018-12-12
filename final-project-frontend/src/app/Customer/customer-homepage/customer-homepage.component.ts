@@ -13,6 +13,7 @@ import {appointment} from '../appointment';
 import { CustomerData } from 'src/app/Homepage/CustomerData';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ConfirmAppointmentComponent} from '../confirm-appointment/confirm-appointment.component';
+// defining structure for saving time specialization
 export interface time {
   value: string;
   no:number;
@@ -39,16 +40,17 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   animal: string;
   private authSub: Subscription;
   searchData: Specialization;
-  
+msg; flag;
+
   today = new Date() ;
-  currentDate = new Date().setDate(this.today.getDate()) 
+  currentDate = new Date().setDate(this.today.getDate())
   tdd = this.today.getDate();
   tmm = this.today.getMonth()+1;
   tyyyy = this.today.getFullYear();
   stoday = this.tdd+'-'+this.tmm+'-'+this.tyyyy;
   currentDay= this.today.getDay() %7;
   currenttime:timeno;
-  
+
   secondDate = new Date().setDate(this.today.getDate() + 1);
   sd= new Date(this.secondDate);
   sedd = this.sd.getDate();
@@ -57,7 +59,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   ssecond = this.sedd+'-'+this.semm+'-'+this.seyyyy;
   secondDay  = (this.today.getDay()+1)%7;
   secondtime : timeno;
-  
+
   thirdDate = new Date().setDate(this.today.getDate() + 2);
   td= new Date(this.thirdDate);
   tedd = this.td.getDate();
@@ -67,7 +69,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   thirdDay  =(this.today.getDay()+2)%7;
   thirdtime : timeno;
   custname:string;
- 
+
   options: Specialization[] = [
     {name: 'General Physician'},
     {name: 'Cardiologists'},
@@ -103,13 +105,14 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
       );
       this.timing= [
         {value:'No shedule',no:0},{value:'7:00 AM',no:1},{value:'7:15 AM',no:2},{value:'7:30 AM',no:3},{value:'7:45 AM',no:4},
-        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8} 
+        {value:'8:00 AM',no:5},{value:'8:15 AM',no:6},{value:'8:30 AM',no:7},{value:'8:45 AM',no:8}
       ];
 
-      
+
   }
+  // get doctor details
   init() {
-    
+
     this.data.selecteddoctor= {
       _id: '',
       doctorID: '',
@@ -130,7 +133,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
       clinicaddress: '',
       timing: {
         mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
-        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}
       },
       location:{
         longitude:51.678418,
@@ -140,6 +143,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
     };
     console.log(this.currentDate);
   }
+
   displayFn(user?: Specialization): string | undefined {
     return user ? user.name : undefined;
   }
@@ -149,6 +153,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
 
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
+  // subscribe to get doctor details from db
   getDoctorSearch() {
     this.customerService.getDoctor(this.searchData.name).subscribe(response => {
       this.data.doctors = response as Doctor[];
@@ -158,31 +163,30 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authSub.unsubscribe();
   }
-
+// checks if slot available for booking
   seeavailiablity(slot:number,date:string, doctor:string):void{
     let x:appointment[];
     let y=0;
     this.customerService.getappointment(slot,date,doctor).subscribe((res)=>{
        x= res as appointment[];
-       
+
      });
-    
-     
+
+
   }
-  
+// saving booked appointment details in db
   book(d_id:string , timeno:number , timevaue:string , date:string , d_name:string)
-  {   
+  {
     this.userID=this.authService.getUserID();
-     var app1={ 
+     var app1={
       customerID:this.userID,
       doctorID:d_id,
       appointment_date:date,
       appointment_time:timeno,
       appointment_value:timevaue,
-      customer_name:"puneet",
       doctor_name:d_name,
      }
-     
+
      this.customerService.postappointment(app1).subscribe((res)=>{
         console.log(res);
      });
@@ -193,6 +197,7 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
     console.log("se");
   }
 
+// setting attributes to book appointments not allowing multiple appointment to be booked
   openDialog(d_id:string , timeno:number , timevaue:string , date:string , d_name:string): void {
     if(timeno==0) return;
     let x:appointment[];
@@ -200,22 +205,22 @@ export class CustomerHomepageComponent implements OnInit, OnDestroy {
        x= res as appointment[];
        if(x.length==0){
         const dialogRef = this.dialog.open(ConfirmAppointmentComponent, {
-          data: {customerID: 0, doctorID: 1}
+          data: {customerID: 0, doctorID: d_id}
          });
          dialogRef.afterClosed().subscribe(result => {
            if(result==0)
            {
              this.book(d_id, timeno , timevaue , date, d_name);
            }
-           
-         });      
-         
+
+         });
+
 
        } else {alert("no more availiable");}
      });
-    
 
-    
+
+
   }
- 
+
 }
