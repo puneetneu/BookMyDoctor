@@ -3,6 +3,15 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DoctorService} from '../shared/doctor.service';
 import { Doctor } from '../shared/doctor.model';
 
+import { appointment} from '../../Customer/appointment';
+
+
+
+export interface DialogData {
+  customerID: string;
+  doctorID: string;
+  appID:string;
+}
 interface customer {
   firstname:string;
   lastname:string;
@@ -15,8 +24,11 @@ interface customer {
   styleUrls: ['./send-prescription.component.scss']
 })
 export class SendPrescriptionComponent implements OnInit {
- customer:customer;
+ customer:any;
+   
+ app:appointment;
  today: number = Date.now();
+ pdfMake:any;
   constructor(private doctorService : DoctorService,
     public dialogRef: MatDialogRef<SendPrescriptionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
@@ -25,6 +37,7 @@ export class SendPrescriptionComponent implements OnInit {
     this.intialisedoctor();
     this.getdoctor();
     this.getcustomer();
+    this.getapp();
     
   }
   onNoClick(): void {
@@ -33,6 +46,18 @@ export class SendPrescriptionComponent implements OnInit {
 
   intialisedoctor()
   {
+    this.app={
+      _id:"",
+      doctorID:"",
+      customerID:"",
+      appointment_date:"",
+      appointment_time:0,
+      appointment_value:"",
+      prescription:"",
+      customer_name:"",
+      doctor_name:""
+
+    }
     this.doctorService.selecteddoctor={
       _id:"",
       doctorID:"",
@@ -52,21 +77,22 @@ export class SendPrescriptionComponent implements OnInit {
       cliniccity:"",
       clinicaddress:"",
       timing:{
-        mon:{ from:"",to:""},tue:{ from:"", to:""},wed:{from:"",to:""},
-        thu:{ from:"",to:""},fri:{ from:"", to:""},sat:{from:"",to:""},sun:{from:"",to:""}   
+        mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
       },
       location:{
         longitude:51.678418,
         latitude:7.809007
-      }
+      },
+      fees:0
     }
     
-    this.customer={
+    this.customer={customer:{
       firstname:"",
       lastname:"",
       gender:"",
       dob:"",
-      
+    }
     }
     
     
@@ -84,17 +110,32 @@ export class SendPrescriptionComponent implements OnInit {
   {
     this.doctorService.getcustomer(this.data.customerID).subscribe((res)=>{
        
-       this.customer=res as customer;
-
-       if(this.customer.gender==undefined)this.customer.gender="";
-       if(this.customer.dob==undefined)this.customer.dob="";
+       this.customer=res ;
+      //   console.log(this.customer);
+      //  if(this.customer.gender==undefined)this.customer.gender="";
+      //  if(this.customer.dob==undefined)this.customer.dob="";
        
     })
   }
+
+  updateapp()
+  {
+    this.doctorService.updateapp(this.app).subscribe((res)=>{
+      console.log(res);
+    })
+  }
+
+  getapp()
+  {
+    this.doctorService.getoneapp(this.data.appID).subscribe((res)=>{
+      this.app=res as appointment;
+      console.log(this.app);
+      
+    })
+  }
+
+ 
   
 
 }
-export interface DialogData {
-  customerID: string;
-  doctorID: string;
-}
+

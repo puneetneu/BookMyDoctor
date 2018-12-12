@@ -3,7 +3,6 @@ import {NgForm} from '@angular/forms';
 
 import { DoctorService} from '../shared/doctor.service';
 import {Doctor} from '../shared/doctor.model';
-<<<<<<< HEAD
 import { AuthService } from 'src/app/Homepage/auth.service';
 import {MatSnackBar} from '@angular/material';
 export interface City {
@@ -12,28 +11,17 @@ export interface City {
 }
 
 declare var M :any;
-=======
-export interface City {
-  value: string;
-}
-declare var M: any;
->>>>>>> origin
 @Component({
   selector: 'app-clinic',
   templateUrl: './clinic.component.html',
   styleUrls: ['./clinic.component.scss']
 })
 export class ClinicComponent implements OnInit {
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
   cities: City[] = [
     {value: 'Delhi'},
     {value: 'Mumbai'},
     {value: 'Pune'}
   ];
-<<<<<<< HEAD
   userID: string;
  
   constructor(private snackBar: MatSnackBar,private doctorService : DoctorService, private authService: AuthService) { }
@@ -47,7 +35,7 @@ export class ClinicComponent implements OnInit {
       doctorID:"",
       email: "",
       password:"",
-      phone: "",
+      phonenumber: "",
       firstname : "",
       lastname : "",
       speciality : "",
@@ -61,9 +49,14 @@ export class ClinicComponent implements OnInit {
       cliniccity:"",
       clinicaddress:"",
       timing:{
-        mon:{ from:"",to:""},tue:{ from:"", to:""},wed:{from:"",to:""},
-        thu:{ from:"",to:""},fri:{ from:"", to:""},sat:{from:"",to:""},sun:{from:"",to:""}   
-      }
+        mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+      },
+      location:{
+        longitude:51.678418,
+        latitude:7.809007
+      },
+      fees:0
     }
     
     
@@ -91,44 +84,5 @@ export class ClinicComponent implements OnInit {
     this.doctorService.getDoctor(this.userID).subscribe((res)=>{
     this.doctorService.selecteddoctor=res as Doctor;
     })
-=======
-  constructor(public doctorService: DoctorService) { }
-
-  resetForm(form?: NgForm) {
-    if (form) {
-      form.reset();
-    }
-    this.doctorService.selecteddoctor = {
-      _id: '',
-      firstname : '',
-      lastname : '',
-      speciality : '',
-      gender :  '',
-      degree : '',
-      image: '',
-      college :  '',
-      eoc : '',
-      eoy :  '',
-      clinicname: '',
-      cliniccity: '',
-      clinicaddress: '',
-    };
-  }
-  ngOnInit() {
-    this.resetForm();
-    this.getdoctor();
-  }
-
-  onSubmit (form: NgForm) {
-    this.doctorService.putDoctor(form.value).subscribe((res) => {
-      M.toast({html: 'updated' , classes: 'rounded'});
-   });
-  }
-
-  getdoctor() {
-    this.doctorService.getDoctor('5bfc7eed320c823bacbd745c').subscribe((res) => {
-    this.doctorService.selecteddoctor = res as Doctor;
-    });
->>>>>>> origin
   }
 }

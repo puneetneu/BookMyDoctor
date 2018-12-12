@@ -8,16 +8,12 @@
                   </mat-form-field>
                 <table mat-table [dataSource]="dataSource">
               
-                  <!-- Position Column -->
-                  <ng-container matColumnDef="No">
-                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let element">  </td>
-                  </ng-container>
+                  
               
                   <!-- Name Column -->
                   <ng-container matColumnDef="Patient">
                     <th mat-header-cell *matHeaderCellDef> Patient </th>
-                    <td mat-cell *matCellDef="let element"> {{element.customerID}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
                   </ng-container>
               
                   <!-- Weight Column -->
@@ -29,13 +25,13 @@
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="Time">
                     <th mat-header-cell *matHeaderCellDef> Time </th>
-                    <td mat-cell *matCellDef="let element"> {{element.appointment_time}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.appointment_value}} </td>
                   </ng-container>
 
                   <ng-container matColumnDef="prescription">
                       <th mat-header-cell *matHeaderCellDef> Prescription </th>
                       <td mat-cell *matCellDef="let element">
-                        <button mat-flat-button color="primary" class="btn btn-custom right" (click)="openDialog(element.customerID, element.doctorID)"> Write</button> 
+                        <button mat-flat-button color="primary" class="btn btn-custom right" (click)="openDialog(element.customerID, element.doctorID,element._id)"> Write</button> 
                       </td>
                     </ng-container>
               

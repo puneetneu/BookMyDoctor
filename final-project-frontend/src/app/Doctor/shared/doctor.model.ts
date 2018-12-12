@@ -3,7 +3,7 @@ export class Doctor {
    doctorID: string;
    email:string ;
    password:string;
-   phone:string;
+   phonenumber:string;
    firstname : string;
    lastname : string;
    speciality : string;
@@ -17,6 +17,8 @@ export class Doctor {
    cliniccity: string;
    clinicaddress: string;
    timing:Doctortime;
+   location:Location;
+   fees:number;
 
 }
 
@@ -35,6 +37,11 @@ export class Doctor {
 //    eoy : String ;
 // }
 
+export interface Location
+{
+  longitude:number;
+  latitude:number;
+}
 export interface Doctortime
 {
   mon:day;
@@ -47,7 +54,7 @@ export interface Doctortime
 }
 export interface day
 {
-  from:string; to:string;
+  from:number; to:number;
 }
 
 export interface clinic{
@@ -55,3 +62,9 @@ export interface clinic{
   cliniccity:string;
   clinicaddress:string ;
 }
+ export interface appointment{
+   customerID:string;
+   doctorID:string;
+   appointment_date:string;
+   appointment_time:string;
+ }

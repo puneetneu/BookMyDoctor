@@ -3,7 +3,21 @@
 }
 
 a:hover {
-  color: #00A0C6;
   text-decoration: none;
   cursor: pointer;
+}
+a:link {
+  text-decoration: none;
+}
+
+.anchorStyles:visited {
+  text-decoration: none;
+}
+
+.anchorStyles:hover {
+  text-decoration: none;
+}
+
+.anchorStyles:active {
+  text-decoration: none;
 }

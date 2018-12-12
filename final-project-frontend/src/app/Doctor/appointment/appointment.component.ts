@@ -5,7 +5,7 @@ import {SendPrescriptionComponent} from '../send-prescription/send-prescription.
 import { from } from 'rxjs';
 import { DoctorService} from '../shared/doctor.service';
 import { AuthService } from 'src/app/Homepage/auth.service';
-import { appointment} from '../shared/doctor.model';
+import { appointment} from '../../Customer/appointment';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class AppointmentComponent implements OnInit {
   appointments: appointment[];
   table:table[];
   newtable:table;
-  displayedColumns: string[] = ['No', 'Patient', 'Date', 'Time','prescription'];
+  displayedColumns: string[] = ['Patient', 'Date', 'Time','prescription'];
   dataSource ;
   customer:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,9 +38,9 @@ export class AppointmentComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  openDialog(customerID:string , doctorID:string): void {
+  openDialog(customerID:string , doctorID:string, appid:string): void {
     const dialogRef = this.dialog.open(SendPrescriptionComponent, {
-      data: {customerID: customerID, doctorID: doctorID}
+      data: {customerID: customerID, doctorID: doctorID, appID:appid}
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -58,35 +58,8 @@ export class AppointmentComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       
     });
-    
-    
-    
   }
  
-  add()
-  {
-    setTimeout(()=>{    
-
-    for (let app of this.appointments)
-    {
-      this.doctorService.getcustomer(app.customerID).subscribe((res)=>{
-       this.customer=res;
-       this.newtable={
-        no:++this.no,
-        name: this.customer.firstname,
-        time: app.appointment_time,
-        date: app.appointment_date,
-        customerID:app.customerID,
-        doctorID:app.doctorID
-      }
-      
-      });
-      this.table.push(this.newtable);
-      console.log(this.table);
-    }}, 4000)
-    
-  }
-
  
 }
 

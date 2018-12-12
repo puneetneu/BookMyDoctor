@@ -47,7 +47,7 @@ export class EducationComponent implements OnInit {
       doctorID:"",
       email: "",
       password:"",
-      phone: "",
+      phonenumber: "",
       firstname : "",
       lastname : "",
       speciality : "",
@@ -61,9 +61,14 @@ export class EducationComponent implements OnInit {
       cliniccity:"",
       clinicaddress:"",
       timing:{
-        mon:{ from:"",to:""},tue:{ from:"", to:""},wed:{from:"",to:""},
-        thu:{ from:"",to:""},fri:{ from:"", to:""},sat:{from:"",to:""},sun:{from:"",to:""}   
-      }
+        mon:{ from:0,to:0},tue:{ from:0, to:0},wed:{from:0,to:0},thu:{ from:0,to:0},
+        fri:{ from:0, to:0},sat:{from:0,to:0},sun:{from:0,to:0}   
+      },
+      location:{
+        longitude:51.678418,
+        latitude:7.809007
+      },
+      fees:0
     }
     
   }
