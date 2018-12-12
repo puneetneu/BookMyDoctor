@@ -3,10 +3,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DoctorService} from '../shared/doctor.service';
 import { Doctor } from '../shared/doctor.model';
 
+import { appointment} from '../../Customer/appointment';
+
+
 
 export interface DialogData {
   customerID: string;
   doctorID: string;
+  appID:string;
 }
 interface customer {
   firstname:string;
@@ -20,8 +24,11 @@ interface customer {
   styleUrls: ['./send-prescription.component.scss']
 })
 export class SendPrescriptionComponent implements OnInit {
- customer:customer;
+ customer:any;
+   
+ app:appointment;
  today: number = Date.now();
+ pdfMake:any;
   constructor(private doctorService : DoctorService,
     public dialogRef: MatDialogRef<SendPrescriptionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
@@ -30,6 +37,7 @@ export class SendPrescriptionComponent implements OnInit {
     this.intialisedoctor();
     this.getdoctor();
     this.getcustomer();
+    this.getapp();
     
   }
   onNoClick(): void {
@@ -38,6 +46,18 @@ export class SendPrescriptionComponent implements OnInit {
 
   intialisedoctor()
   {
+    this.app={
+      _id:"",
+      doctorID:"",
+      customerID:"",
+      appointment_date:"",
+      appointment_time:0,
+      appointment_value:"",
+      prescription:"",
+      customer_name:"",
+      doctor_name:""
+
+    }
     this.doctorService.selecteddoctor={
       _id:"",
       doctorID:"",
@@ -66,12 +86,12 @@ export class SendPrescriptionComponent implements OnInit {
       }
     }
     
-    this.customer={
+    this.customer={customer:{
       firstname:"",
       lastname:"",
       gender:"",
       dob:"",
-      
+    }
     }
     
     
@@ -89,38 +109,31 @@ export class SendPrescriptionComponent implements OnInit {
   {
     this.doctorService.getcustomer(this.data.customerID).subscribe((res)=>{
        
-       this.customer=res as customer;
-
-       if(this.customer.gender==undefined)this.customer.gender="";
-       if(this.customer.dob==undefined)this.customer.dob="";
+       this.customer=res ;
+      //   console.log(this.customer);
+      //  if(this.customer.gender==undefined)this.customer.gender="";
+      //  if(this.customer.dob==undefined)this.customer.dob="";
        
     })
   }
 
-  pdf()
+  updateapp()
   {
-    var docDefinition = {
-      content: [
-        // if you don't need styles, you can use a simple string to define a paragraph
-        'This is a standard paragraph, using default style',
-   
-        // using a { text: '...' } object lets you set styling properties
-        { text: 'This paragraph will have a bigger font', fontSize: 15 },
-   
-        // if you set pass an array instead of a string, you'll be able
-        // to style any fragment individually
-        {
-          text: [
-            'This paragraph is defined as an array of elements to make it possible to ',
-            { text: 'restyle part of it and make it bigger ', fontSize: 15 },
-            'than the rest.'
-          ]
-        }
-      ]
-    };
-    
-    
+    this.doctorService.updateapp(this.app).subscribe((res)=>{
+      console.log(res);
+    })
   }
+
+  getapp()
+  {
+    this.doctorService.getoneapp(this.data.appID).subscribe((res)=>{
+      this.app=res as appointment;
+      console.log(this.app);
+      
+    })
+  }
+
+ 
   
 
 }
